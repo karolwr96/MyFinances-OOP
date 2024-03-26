@@ -1,7 +1,6 @@
 <?php
 
-$app = include __DIR__ . '/../src/App/bootstrap.php'; // bootstrap zwraca instancję aplikacji, ma dołączać pliki do projektu
-                                                      // klasa app jest pobierana z frameworka
+include __DIR__ . "/../src/App/functions.php";
 
-$app -> run();
-?>
+$app = include __DIR__ . '/../src/App/bootstrap.php'; // bootstrap zwraca instancję aplikacji, ma dołączać pliki do projektu klasa app jest pobierana z frameworka
+$app->run();
