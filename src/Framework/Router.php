@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Framework;
 
+use App\Middleware\TemplateDataMiddleware;
+
 class Router
 {
     private array $routes = [];
@@ -41,7 +43,16 @@ class Router
             $controllerInstance = $container ?
                 $container->resolve($class) : new $class;
 
-            $controllerInstance->{$function}();
+            $action = fn () => $controllerInstance->{$function}();
+
+            foreach ($this->middlewares as $middleware) {
+                $middlewareInstance = $container ? $container->resolve($middleware) : new $middleware;
+                $action = fn () => $middlewareInstance->process($action);
+            }
+
+            $action();
+
+            return;
         }
     }
 
