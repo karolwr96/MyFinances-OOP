@@ -1,0 +1,82 @@
+body {
+    background-color: #eee;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(
+      to right,
+      #ee7724,
+      #d8363a,
+      #dd3675,
+      #b44593
+    );
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 15px;
+  }
+  
+  .success {
+    color: green;
+    margin-bottom: 15px;
+    text-decoration: none;
+  }
+  
+  <style>
+      a{color: black;}
+      a:link {text-decoration: none}
+      a:visited {text-decoration: none}
+      a:active {text-decoration: none}
+      a:hover {text-decoration: underline}
+  </style>
+  
+  @media (min-width: 768px) {
+    .gradient-form {
+      height: 100vh !important;
+    }
+  }
+  @media (min-width: 769px) {
+    .gradient-custom-2 {
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+    }
+  }
+  @media (min-width: 769px) {
+    .gradient-custom-balance {
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+    }
+  }
+  
+  .newFont {
+    font-size: 23px;
+  }
+  
+  .fontColor {
+    color: black;
+  }
+  
+  input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 5px;
+    outline: 2px solid orange;
+    font-size: 2em;
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: orange;
+  }
+  
