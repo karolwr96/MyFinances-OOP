@@ -27,7 +27,7 @@ class Database
         }
     }
 
-    public function query($query)
+    public function query(string $query)
     {
         $this->connection->query($query);
     }

@@ -4,19 +4,17 @@ include __DIR__ . '/src/Framework/Database.php';
 
 use Framework\Database;
 
-$db = new Database('mysql', [
-    'host' => 'localhost',
-    'port' => 3306,
-    'dbname' => 'myfinances'
-], 'root', '');
+$db = new Database(
+    $_ENV['DB_DRIVER'],
+    [
+        'host' => $_ENV['DB_HOST'],
+        'port' => $_ENV['DB_PORT'],
+        'dbname' => $_ENV['DB_NAME']
+    ],
+    $_ENV['DB_USER'],
+    $_ENV['DB_PASS']
+);
 
-$search = "testtest1";
-$query = "SELECT * FROM users WHERE username=:name";
+$sqlFile = file_get_contents("./database.sql");
 
-$stmt = $db->query($query);
-
-$stmt->bindValue('name', $search, PDO::PARAM_STR);
-
-$stmt->execute();
-
-var_dump($stmt->fetchAll(PDO::FETCH_OBJ));
+$db->query($sqlFile);
