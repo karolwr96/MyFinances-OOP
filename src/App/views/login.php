@@ -25,13 +25,20 @@
                                     </div>
 
                                     <form method="post">
+                                        <?php include $this->resolve('partials/_csrf.php'); ?>
+
                                         <p class="mb-4">Please login to your account</p>
 
                                         <div class="form-outline mb-3">
-                                            <input type="email" id="form2Example11" name="email" class="form-control " placeholder="E-mail adress" />
+                                            <input type="email" value="<?php echo e($oldFormData['email'] ?? ''); ?>" id=" form2Example11" name="email" class="form-control " placeholder="E-mail adress" />
                                             <label class="form-label" for="form2Example11"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                                                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                                                 </svg> E-mail adress</label>
+                                            <?php if (array_key_exists('email', $errors)) : ?>
+                                                <div class="error">
+                                                    <?php echo e($errors['email'][0]); ?>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
 
                                         <div class="form-outline mb-4">
@@ -39,10 +46,13 @@
                                             <label class="form-label" for="form2Example22"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                                                     <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
                                                 </svg> Password</label>
+                                            <?php if (array_key_exists('password', $errors)) : ?>
+                                                <div class="error">
+                                                    <?php echo e($errors['password'][0]); ?>
+                                                </div>
+                                            <?php endif; ?>
                                             <br />
                                             <?php
-                                            // if (isset($_SESSION['loggingError'])) echo $_SESSION['loggingError'];
-                                            // unset($_SESSION['loggingError']);
                                             ?>
                                         </div>
 
@@ -60,7 +70,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
-                                        <a href="./register.php" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hammer" viewBox="0 0 16 16">
+                                        <a href="/register" class="btn btn-outline-danger" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hammer" viewBox="0 0 16 16">
                                                 <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z" />
                                             </svg> Create now</a>
                                     </div>

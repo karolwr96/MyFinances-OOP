@@ -25,6 +25,8 @@
                                     </div>
 
                                     <form method="POST">
+                                        <?php include $this->resolve('partials/_csrf.php'); ?>
+
                                         <p class="mb-4">Please enter your data:</p>
                                         <div class="col-md-6 mb-1">
                                             <div class="form-outline">
