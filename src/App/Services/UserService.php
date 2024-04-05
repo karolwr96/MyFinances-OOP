@@ -41,9 +41,33 @@ class UserService
             ]
         );
 
-        session_regenerate_id();
-
+        //get user id
         $_SESSION['user'] = $this->db->id();
+        $id = $_SESSION['user'];
+
+        //adding default incomes category to user
+        $this->db->query(
+            " INSERT INTO incomes_category_assigned_to_users (user_id, name) 
+              SELECT '$id', name 
+              FROM incomes_category_default"
+        );
+
+        //adding default expenses category to user
+        $this->db->query(
+            " INSERT INTO expenses_category_assigned_to_users (user_id, name) 
+              SELECT '$id', name 
+              FROM expenses_category_default"
+        );
+
+        //adding payment methods to user
+        $this->db->query(
+            " INSERT INTO payment_methods_assigned_to_users (user_id, name) 
+              SELECT '$id', name 
+              FROM payment_methods_default"
+        );
+
+        session_regenerate_id();
+        //$_SESSION['user'] = $this->db->id();
     }
 
     public function login(array $formData)
