@@ -3,6 +3,7 @@
 <section id="add-Revenue-menu">
     <form method="post">
         <?php include $this->resolve("partials/_csrf.php"); ?>
+
         <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 md-5" tabindex="-1" role="dialog" id="modalSheet">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-4 shadow">
@@ -25,11 +26,13 @@
 
                         <h6 class="px-2">Expense date</h6>
                         <div class="col pb-3">
-                            <input value="<?php echo e($oldFormData['date'] ?? ''); ?>" name="date" type="date" class="form-control">
+                            <input value="<?php echo e($oldFormData['date'] ?? '');
+                                            ?>" name="date" type="date" class="form-control">
                         </div>
                         <?php if (array_key_exists('date', $errors)) : ?>
                             <div class="error">
-                                <?php echo e($errors['date'][0]); ?>
+                                <?php echo e($errors['date'][0]);
+                                ?>
                             </div>
                         <?php endif; ?>
 
@@ -37,6 +40,7 @@
                         <div class="pb-3">
                             <select class="form-select" name="category" aria-label="Default select example" value="">
                                 <?php
+                                $rows = $_SESSION['expensesCategories'];
                                 foreach ($rows as $row) {
                                 ?>
                                     <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
@@ -55,6 +59,7 @@
                         <div class="pb-3">
                             <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
                                 <?php
+                                $rowsWithPayment = $_SESSION['payMethods'];
                                 foreach ($rowsWithPayment as $row) {
                                 ?>
                                     <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
@@ -65,7 +70,7 @@
                         </div>
                         <?php if (array_key_exists('paymentMethod', $errors)) : ?>
                             <div class="error">
-                                <?php echo e($errors['paymentMethod'][0]); ?>
+                                <?php echo e($errors['date'][0]); ?>
                             </div>
                         <?php endif; ?>
 

@@ -6,7 +6,7 @@
             <div class="col-xl-10">
                 <div class="card rounded-3 ♠-black">
                     <div class="row g-0">
-                        <div class="col-lg-6 d-flex align-items-center " style="background-color: #eee; color;">
+                        <div class="col-lg-6 d-flex align-items-center " style="background-color: #eee; ">
                             <div class="text-white px-3 py-4 p-md-5 mx-md-1">
                                 <h2 class="mb-4 fontColor">How to use?
                                 </h2>

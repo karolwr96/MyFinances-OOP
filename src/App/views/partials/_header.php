@@ -14,7 +14,7 @@
     <section id="navigation-bar">
         <nav class="navbar navbar-expand-lg bg-body-tertiary px-3">
             <div class="container-fluid">
-                <a class="navbar-brand" href="./logged.php"><img src="./sources/logo2.png" alt="moveit brand icon" height="85" />
+                <a class="navbar-brand" href="/"><img src="./sources/logo2.png" alt="moveit brand icon" height="85" />
                     MyFinances</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                                     <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
                                     <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
                                 </svg>
-                                Add revenue</a>
+                                Add income</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="/transaction"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
