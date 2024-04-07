@@ -1,5 +1,9 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
+<?php
+//echo $totalIncome
+?>
+
 <section id="balance-sheet">
     <div class="container col-lg-4 p-4 md-5">
         <div class="shadow">
@@ -46,11 +50,7 @@
                     <div class="pb-3">
                         <table class="table">
                             <thead>
-                                <h6 class="px-2">Total incomes: <?php if (isset($_SESSION['totalIncomes'])) {
-                                                                    echo  $_SESSION['totalIncomes'];
-                                                                } else {
-                                                                    echo '0';
-                                                                } ?></h6>
+                                <h6 class="px-2">Total incomes: <?php echo $totalIncome; ?></h6>
                                 <tr>
                                     <th>Category</th>
                                     <th>Amount</th>
@@ -58,11 +58,12 @@
                             </thead>
                             <tbody>
                                 <?php
-                                if (isset($_POST['formBalanceData'])) {
+                                if (isset($_SESSION['incomesList'])) {
+                                    $arrayWithResult = $_SESSION['incomesList'];
                                     foreach ($arrayWithResult as $row) {
                                         echo "<tr>
-                    <td>{$row['0']}</td>
-                    <td>{$row['1']}</td>
+                    <td>{$row['category']}</td>
+                    <td>{$row['amount']}</td>
                     </tr>";
                                     }
                                 }
@@ -72,11 +73,12 @@
 
                         <table class="table">
                             <thead>
-                                <h6 class="px-2">Total expenses: <?php if (isset($_SESSION['totalExpense'])) {
-                                                                        echo $_SESSION['totalExpense'];
-                                                                    } else {
+                                <h6 class="px-2">Total expenses: <?php if (isset($totalExpense)) {
                                                                         echo '0';
-                                                                    } ?></h6>
+                                                                    } else {
+                                                                        echo ($totalExpense);
+                                                                    } ?>
+                                </h6>
                                 <tr>
                                     <th>Category</th>
                                     <th>Amount</th>
@@ -84,11 +86,12 @@
                             </thead>
                             <tbody>
                                 <?php
-                                if (isset($_POST['formBalanceData'])) {
+                                if (isset($_SESSION['expensesList'])) {
+                                    $arrayWithExpenses = $_SESSION['expensesList'];
                                     foreach ($arrayWithExpenses as $row) {
                                         echo "<tr>
-                    <td>{$row['0']}</td>
-                    <td>{$row['1']}</td>
+                    <td>{$row['category']}</td>
+                    <td>{$row['amount']}</td>
                     </tr>";
                                     }
                                 }

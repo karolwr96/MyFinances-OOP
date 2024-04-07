@@ -130,18 +130,18 @@ class TransactionService
             ]
         )->findAll();
 
-        $_SESSION['totalIncomes'] = $queryResult[0]['totalIncomes'];
+        //$_SESSION['totalIncomes'] = $queryResult[0]['totalIncomes'];
+        $totalIncome = $queryResult[0]['totalIncomes'];
+        return $totalIncome;
     }
 
-    public function getExpense(array $formData)
+    public function getTotalExpense(array $formData)
     {
         $dates = self::getBalanceStartAndEndDate($formData);
 
-        $selectedInterval = $formData['formBalanceData'];
-
         $queryResult = $this->db->query(
-            "SELECT SUM(amount) AS totalIncomes FROM expenses   
-                WHERE user_id = :userId AND date_of_expense    BETWEEN :startDate AND :endDate LIMIT 1",
+            "SELECT SUM(amount) AS totalExpenses FROM expenses   
+                WHERE user_id = :userId AND date_of_expense BETWEEN :startDate AND :endDate LIMIT 1",
             [
                 'userId' => $_SESSION['user'],
                 'startDate' => $dates['start'],
@@ -149,6 +149,45 @@ class TransactionService
             ]
         )->findAll();
 
-        $_SESSION['totalExpense'] = $queryResult[0]['totalIncomes'];
+        $totalExpense = $queryResult[0]['totalExpenses'];
+        return $totalExpense;
+    }
+
+    public function getListWithIncomes(array $formData)
+    {
+        $dates = self::getBalanceStartAndEndDate($formData);
+
+        $_SESSION['incomesList'] = $this->db->query(
+            "SELECT incomes_category_assigned_to_users.name AS category, 
+             SUM(incomes.amount) AS amount
+             FROM incomes_category_assigned_to_users
+             INNER JOIN incomes ON incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id WHERE :userId AND incomes.date_of_income  
+             BETWEEN :startDate AND :endDate
+             GROUP BY incomes.income_category_assigned_to_user_id ORDER BY amount DESC",
+            [
+                'userId' => $_SESSION['user'],
+                'startDate' => $dates['start'],
+                'endDate' => $dates['end']
+            ]
+        )->findAll();
+    }
+
+    public function getListWithExpenses(array $formData)
+    {
+        $dates = self::getBalanceStartAndEndDate($formData);
+
+        $_SESSION['expensesList'] = $this->db->query(
+            "SELECT expenses_category_assigned_to_users.name AS category, 
+             SUM(expenses.amount) AS amount
+             FROM expenses_category_assigned_to_users 
+             INNER JOIN expenses  ON expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id WHERE :userId AND expenses.date_of_expense  
+             BETWEEN :startDate AND :endDate
+             GROUP BY expenses.expense_category_assigned_to_user_id ORDER BY amount DESC",
+            [
+                'userId' => $_SESSION['user'],
+                'startDate' => $dates['start'],
+                'endDate' => $dates['end']
+            ]
+        )->findAll();
     }
 }

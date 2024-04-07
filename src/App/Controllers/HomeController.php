@@ -22,14 +22,29 @@ class HomeController
     {
         echo $this->view->render(
             "/index.php",
-            ['title' => 'Home Page']
+            [
+                'title' => 'Home Page',
+                //'totalIncome' => '0',
+                //'totalExpense' => '0'
+            ]
         );
     }
 
     public function showBalance()
     {
-        $this->transactionService->getTotalIncome($_POST);
-        $this->transactionService->getExpense($_POST);
+        $totalIncome = $this->transactionService->getTotalIncome($_POST);
+        $totalExpense = $this->transactionService->getTotalExpense($_POST);
+
+        $this->transactionService->getListWithIncomes($_POST);
+        $this->transactionService->getListWithExpenses($_POST);
+
+        echo $this->view->render(
+            "/index.php",
+            [
+                'totalIncome' => $totalIncome,
+                'totalExpense' =>  $totalExpense
+            ]
+        );
         redirectTo('/');
     }
 }
