@@ -6,11 +6,16 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 use App\Config\Paths;
+use App\Services\{ValidatorService, TransactionService, UserService};
 
 class HomeController
 {
-    public function __construct(private TemplateEngine $view)
-    {
+    public function __construct(
+        private TemplateEngine $view,
+        private ValidatorService $validatorService,
+        private TransactionService $transactionService
+        //private UserService $userService
+    ) {
     }
 
     public function home()
@@ -19,5 +24,12 @@ class HomeController
             "/index.php",
             ['title' => 'Home Page']
         );
+    }
+
+    public function showBalance()
+    {
+        $this->transactionService->getTotalIncome($_POST);
+        $this->transactionService->getExpense($_POST);
+        redirectTo('/');
     }
 }

@@ -110,6 +110,17 @@ class UserService
                 'userId' => $user['id']
             ]
         )->findAll();
+
+        //get incomes categories 
+
+        $_SESSION['incomesCategories'] = $this->db->query(
+            "SELECT * 
+             FROM incomes_category_assigned_to_users 
+             WHERE user_id = :userId",
+            [
+                'userId' => $user['id']
+            ]
+        )->findAll();
     }
 
     public function logout()
