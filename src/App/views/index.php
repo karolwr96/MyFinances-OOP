@@ -1,7 +1,10 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
 <?php
-//echo $totalIncome
+echo $_SESSION['user'];
+echo '<pre>';
+var_dump($_POST);
+echo '</pre>';
 ?>
 
 <section id="balance-sheet">
@@ -25,7 +28,15 @@
                             <select id="options" class="form-select" name="formBalanceData" aria-label="Default select example" onchange="toggleFields()">
                                 <option value="currentMonth">Current month</option>
                                 <option value="previousMonth">Previous month</option>
+                                <option value="previousMonth" <?php if (isset($_POST['formBalanceData'])) {
+                                                                    echo ($_POST['formBalanceData'] == 'previousMonth') ? 'selected' : '';
+                                                                } ?>>Previous month</option>
                                 <option value="individualInterval">Own scope</option>
+
+                                <option value="individualInterval" <?php if (isset($_POST['formBalanceData'])) {
+                                                                        echo ($_POST['formBalanceData'] == 'individualInterval') ? 'selected' : '';
+                                                                    } ?>>Own scope</option>
+
                             </select>
                             <br>
                             <div id="fields" class="hidden">
@@ -50,7 +61,11 @@
                     <div class="pb-3">
                         <table class="table">
                             <thead>
-                                <h6 class="px-2">Total incomes: <?php echo $totalIncome; ?></h6>
+                                <h6 class="px-2">Total incomes: <?php if (!isset($_SESSION['totalIncomes'])) {
+                                                                    echo '0';
+                                                                } else {
+                                                                    echo ($_SESSION['totalIncomes']);
+                                                                } ?></h6>
                                 <tr>
                                     <th>Category</th>
                                     <th>Amount</th>
@@ -73,10 +88,10 @@
 
                         <table class="table">
                             <thead>
-                                <h6 class="px-2">Total expenses: <?php if (isset($totalExpense)) {
+                                <h6 class="px-2">Total expenses: <?php if (!isset($_SESSION['totalExpense'])) {
                                                                         echo '0';
                                                                     } else {
-                                                                        echo ($totalExpense);
+                                                                        echo ($_SESSION['totalExpense']);
                                                                     } ?>
                                 </h6>
                                 <tr>
@@ -100,8 +115,8 @@
                         </table>
 
                         <div class="my-3">
-                            <h5 class="px-3" style="text-align: center;">Your balance is: <?php if (isset($totalBalance)) {
-                                                                                                echo $totalBalance;
+                            <h5 class="px-3" style="text-align: center;">Your balance is: <?php if (isset($_SESSION['totalExpense']) && isset($_SESSION['totalIncomes'])) {
+                                                                                                echo $_SESSION['totalIncomes'] - $_SESSION['totalExpense'];
                                                                                             } else {
                                                                                                 echo '0';
                                                                                             } ?></h5>

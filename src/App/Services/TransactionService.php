@@ -130,9 +130,9 @@ class TransactionService
             ]
         )->findAll();
 
-        //$_SESSION['totalIncomes'] = $queryResult[0]['totalIncomes'];
-        $totalIncome = $queryResult[0]['totalIncomes'];
-        return $totalIncome;
+        $_SESSION['totalIncomes'] = $queryResult[0]['totalIncomes'];
+        //$totalIncome = $queryResult[0]['totalIncomes'];
+        //return $totalIncome;
     }
 
     public function getTotalExpense(array $formData)
@@ -149,8 +149,9 @@ class TransactionService
             ]
         )->findAll();
 
-        $totalExpense = $queryResult[0]['totalExpenses'];
-        return $totalExpense;
+        $_SESSION['totalExpense'] = $queryResult[0]['totalExpenses'];
+        //$totalExpense = $queryResult[0]['totalExpenses'];
+        //return $totalExpense;
     }
 
     public function getListWithIncomes(array $formData)
@@ -161,7 +162,7 @@ class TransactionService
             "SELECT incomes_category_assigned_to_users.name AS category, 
              SUM(incomes.amount) AS amount
              FROM incomes_category_assigned_to_users
-             INNER JOIN incomes ON incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id WHERE :userId AND incomes.date_of_income  
+             INNER JOIN incomes ON incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id WHERE incomes.user_id = :userId AND incomes.date_of_income  
              BETWEEN :startDate AND :endDate
              GROUP BY incomes.income_category_assigned_to_user_id ORDER BY amount DESC",
             [
@@ -180,7 +181,7 @@ class TransactionService
             "SELECT expenses_category_assigned_to_users.name AS category, 
              SUM(expenses.amount) AS amount
              FROM expenses_category_assigned_to_users 
-             INNER JOIN expenses  ON expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id WHERE :userId AND expenses.date_of_expense  
+             INNER JOIN expenses  ON expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id WHERE expenses.user_id = :userId AND expenses.date_of_expense  
              BETWEEN :startDate AND :endDate
              GROUP BY expenses.expense_category_assigned_to_user_id ORDER BY amount DESC",
             [
