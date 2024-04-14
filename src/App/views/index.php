@@ -108,11 +108,19 @@
                         </table>
 
                         <div class="my-3">
-                            <h5 class="px-3" style="text-align: center;">Your balance is: <?php if (isset($_SESSION['totalExpense']) && isset($_SESSION['totalIncomes'])) {
-                                                                                                echo $_SESSION['totalIncomes'] - $_SESSION['totalExpense'];
-                                                                                            } else {
-                                                                                                echo '0';
-                                                                                            } ?></h5>
+                            <h5 class="px-3" style="text-align: center;">Your balance is: <?php
+                                                                                            $incomes = 0;
+                                                                                            $expenses = 0;
+                                                                                            if (isset($_SESSION['totalExpense'])) {
+                                                                                                $expenses = $_SESSION['totalExpense'];
+                                                                                            }
+
+                                                                                            if (isset($_SESSION['totalIncomes'])) {
+                                                                                                $expenses = $_SESSION['totalExpense'];
+                                                                                            }
+                                                                                            $total = $incomes - $expenses;
+                                                                                            echo $total;
+                                                                                            ?></h5>
                         </div>
                     </div>
                 </div>

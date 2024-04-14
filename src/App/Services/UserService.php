@@ -87,39 +87,6 @@ class UserService
         $_SESSION['user'] = $user['id'];
 
         session_regenerate_id();
-
-        // get expenses categories
-
-        /* $_SESSION['expensesCategories'] = $this->db->query(
-            "SELECT * 
-             FROM expenses_category_assigned_to_users 
-             WHERE user_id = :userId",
-            [
-                'userId' => $user['id']
-            ]
-        )->findAll();*/
-
-        //get payment methods
-
-        /*$_SESSION['payMethods'] = $this->db->query(
-            "SELECT * 
-        FROM payment_methods_assigned_to_users 
-        WHERE user_id = :userId",
-            [
-                'userId' => $user['id']
-            ]
-        )->findAll();*/
-
-        //get incomes categories 
-
-        /*$_SESSION['incomesCategories'] = $this->db->query(
-            "SELECT * 
-             FROM incomes_category_assigned_to_users 
-             WHERE user_id = :userId",
-            [
-                'userId' => $user['id']
-            ]
-        )->findAll();*/
     }
 
     public function getUserIncomeSource()
@@ -176,20 +143,4 @@ class UserService
         // unset($_SESSION['user']);
         // session_regenerate_id();
     }
-
-    /* public function getUserExpenseCategory()
-    {
-        $_SESSION['user'] = $this->db->id();
-        $id = $_SESSION['user'];
-
-        
-        $_SESSION['expensesCategories'] = $this->db->query(
-            "SELECT * 
-             FROM expenses_category_assigned_to_users 
-             WHERE user_id = :userId",
-            [
-                'userId' => $user['id']
-            ]
-        )->findAll();
-    }*/
 }
