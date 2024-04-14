@@ -57,6 +57,8 @@ class TransactionService
                 'comment' => $formData['description'],
             ]
         );
+
+        $_SESSION['successfulAddedExpense'] = true;
     }
 
     public function getCurrentIncomeCategoryId(array $formData)
@@ -87,6 +89,7 @@ class TransactionService
                 'comment' => $formData['description'],
             ]
         );
+        $_SESSION['successfulAddedIncome'] = true;
     }
 
     public function getBalanceStartAndEndDate(array $formData)

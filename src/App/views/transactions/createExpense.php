@@ -85,6 +85,17 @@
 
                     </div>
 
+                    <?php
+                    if (isset($_SESSION['successfulAddedExpense'])) {
+                        echo '<a href="index.php">
+                      <div class="text-center success">
+                      Added successfully!
+                      </div>
+                      </a>';
+                        unset($_SESSION['successfulAddedExpense']);
+                    }
+                    ?>
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-lg btn-primary mb-3" style="background-color: #ee7724; width: 40%">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
