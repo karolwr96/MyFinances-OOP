@@ -66,7 +66,7 @@
 
                     <?php
                     if (isset($_SESSION['successfulAddedIncome'])) {
-                        echo '<a href="index.php">
+                        echo '
                       <div class="text-center success">
                       Added successfully!
                       </div>

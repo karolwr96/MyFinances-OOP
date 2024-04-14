@@ -21,15 +21,7 @@
                             <select id="options" class="form-select" name="formBalanceData" aria-label="Default select example" onchange="toggleFields()">
                                 <option value="currentMonth">Current month</option>
                                 <option value="previousMonth">Previous month</option>
-                                <option value="previousMonth" <?php if (isset($_POST['formBalanceData'])) {
-                                                                    echo ($_POST['formBalanceData'] == 'previousMonth') ? 'selected' : '';
-                                                                } ?>>Previous month</option>
                                 <option value="individualInterval">Own scope</option>
-
-                                <option value="individualInterval" <?php if (isset($_POST['formBalanceData'])) {
-                                                                        echo ($_POST['formBalanceData'] == 'individualInterval') ? 'selected' : '';
-                                                                    } ?>>Own scope</option>
-
                             </select>
                             <br>
                             <div id="fields" class="hidden">

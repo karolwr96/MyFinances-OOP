@@ -10,17 +10,10 @@
 </head>
 
 <body>
-
-    <?php
-    echo '<pre>';
-    var_dump($_SESSION);
-    echo '</pre>';
-    ?>
-
     <section id="navigation-bar">
         <nav class="navbar navbar-expand-lg bg-body-tertiary px-3">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/"><img src="./sources/logo2.png" alt="moveit brand icon" height="85" />
+                <a class="navbar-brand" href="/"><img src="/src/App/img/logo.png" alt="moveit brand icon" height="85" />
                     MyFinances</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

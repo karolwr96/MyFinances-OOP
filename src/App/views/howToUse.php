@@ -26,11 +26,11 @@
                                 <h2 class="mb-4">Achieve your goal with us
 
                                     <div class="text-center mt-5">
-                                        <img src="./sources/green-money.jpg" style="border-radius: 10px; width: 295px;" alt="orange wallet with money">
+                                        <img src="img/green-money.jpg" style="border-radius: 10px; width: 295px;" alt="orange wallet with money">
                                     </div>
 
                                     <div class="text-center mt-5">
-                                        <img src="./sources/chart.jpg" style="border-radius: 10px; width: 295px;" alt="orange wallet with money">
+                                        <img src="img/chart.jpg" style="border-radius: 10px; width: 295px;" alt="chart">
                                     </div>
 
                                 </h2>

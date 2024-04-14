@@ -112,7 +112,7 @@
                                         </ul>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <img src="./sources/wallet.png" style="border-radius: 10px; width: 295px;" alt="orange wallet with money">
+                                        <img src="img/wallet.png" style="border-radius: 10px; width: 295px;" alt="orange wallet with money">
                                     </div>
                                 </div>
                             </div>

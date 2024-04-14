@@ -134,8 +134,6 @@ class TransactionService
         )->findAll();
 
         $_SESSION['totalIncomes'] = $queryResult[0]['totalIncomes'];
-        //$totalIncome = $queryResult[0]['totalIncomes'];
-        //return $totalIncome;
     }
 
     public function getTotalExpense(array $formData)
@@ -153,8 +151,6 @@ class TransactionService
         )->findAll();
 
         $_SESSION['totalExpense'] = $queryResult[0]['totalExpenses'];
-        //$totalExpense = $queryResult[0]['totalExpenses'];
-        //return $totalExpense;
     }
 
     public function getListWithIncomes(array $formData)
