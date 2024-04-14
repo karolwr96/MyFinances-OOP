@@ -11,6 +11,12 @@
 
 <body>
 
+    <?php
+    echo '<pre>';
+    var_dump($_SESSION);
+    echo '</pre>';
+    ?>
+
     <section id="navigation-bar">
         <nav class="navbar navbar-expand-lg bg-body-tertiary px-3">
             <div class="container-fluid">

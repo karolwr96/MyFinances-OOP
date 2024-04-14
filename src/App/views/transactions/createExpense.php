@@ -26,7 +26,7 @@
 
                         <h6 class="px-2">Expense date</h6>
                         <div class="col pb-3">
-                            <input value="<?php echo e($oldFormData['date'] ?? '');
+                            <input value="<?php echo e($oldFormData['date'] ?? date('Y-m-j'));
                                             ?>" name="date" type="date" class="form-control">
                         </div>
                         <?php if (array_key_exists('date', $errors)) : ?>
@@ -40,7 +40,6 @@
                         <div class="pb-3">
                             <select class="form-select" name="category" aria-label="Default select example" value="">
                                 <?php
-                                $rows = $_SESSION['expensesCategories'];
                                 foreach ($rows as $row) {
                                 ?>
                                     <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
@@ -59,8 +58,8 @@
                         <div class="pb-3">
                             <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
                                 <?php
-                                $rowsWithPayment = $_SESSION['payMethods'];
-                                foreach ($rowsWithPayment as $row) {
+                                //$rowsWithPayment = $_SESSION['payMethods'];
+                                foreach ($payment as $row) {
                                 ?>
                                     <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
                                 <?php

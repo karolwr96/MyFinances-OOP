@@ -1,12 +1,5 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
-<?php
-echo $_SESSION['user'];
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
-?>
-
 <section id="balance-sheet">
     <div class="container col-lg-4 p-4 md-5">
         <div class="shadow">

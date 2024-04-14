@@ -90,7 +90,59 @@ class UserService
 
         // get expenses categories
 
-        $_SESSION['expensesCategories'] = $this->db->query(
+        /* $_SESSION['expensesCategories'] = $this->db->query(
+            "SELECT * 
+             FROM expenses_category_assigned_to_users 
+             WHERE user_id = :userId",
+            [
+                'userId' => $user['id']
+            ]
+        )->findAll();*/
+
+        //get payment methods
+
+        /*$_SESSION['payMethods'] = $this->db->query(
+            "SELECT * 
+        FROM payment_methods_assigned_to_users 
+        WHERE user_id = :userId",
+            [
+                'userId' => $user['id']
+            ]
+        )->findAll();*/
+
+        //get incomes categories 
+
+        /*$_SESSION['incomesCategories'] = $this->db->query(
+            "SELECT * 
+             FROM incomes_category_assigned_to_users 
+             WHERE user_id = :userId",
+            [
+                'userId' => $user['id']
+            ]
+        )->findAll();*/
+    }
+
+    public function getUserIncomeSource()
+    {
+        $user['id'] = $_SESSION['user'];
+
+        $incomesSource = $this->db->query(
+            "SELECT * 
+             FROM incomes_category_assigned_to_users 
+             WHERE user_id = :userId",
+            [
+                'userId' => $user['id']
+            ]
+        )->findAll();
+
+        return $incomesSource;
+    }
+
+    public function getUserExpenseCategory()
+    {
+        $user['id'] = $_SESSION['user'];
+
+        $expenseCategories = $this->db->query(
             "SELECT * 
              FROM expenses_category_assigned_to_users 
              WHERE user_id = :userId",
@@ -99,27 +151,23 @@ class UserService
             ]
         )->findAll();
 
-        //get payment methods
+        return $expenseCategories;
+    }
 
-        $_SESSION['payMethods'] = $this->db->query(
+    public function getUserPaymentMethods()
+    {
+        $user['id'] = $_SESSION['user'];
+
+        $paymentMethods = $this->db->query(
             "SELECT * 
-        FROM payment_methods_assigned_to_users 
-        WHERE user_id = :userId",
-            [
-                'userId' => $user['id']
-            ]
-        )->findAll();
-
-        //get incomes categories 
-
-        $_SESSION['incomesCategories'] = $this->db->query(
-            "SELECT * 
-             FROM incomes_category_assigned_to_users 
+             FROM payment_methods_assigned_to_users 
              WHERE user_id = :userId",
             [
                 'userId' => $user['id']
             ]
         )->findAll();
+
+        return $paymentMethods;
     }
 
     public function logout()

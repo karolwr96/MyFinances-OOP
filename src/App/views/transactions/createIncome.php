@@ -25,7 +25,7 @@
 
                         <h6 class="px-2">Income date</h6>
                         <div class="col pb-3">
-                            <input value="<?php echo e($oldFormData['date'] ?? '');
+                            <input value="<?php echo e($oldFormData['date'] ?? date('Y-m-j'));
                                             ?>" name="date" type="date" class="form-control">
                         </div>
                         <?php if (array_key_exists('date', $errors)) : ?>
@@ -39,8 +39,7 @@
                         <div class="pb-3">
                             <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
                                 <?php
-                                $rows = $_SESSION['incomesCategories'];
-                                foreach ($rows as $row) {
+                                foreach ($incomeSources as $row) {
                                 ?>
                                     <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
                                 <?php

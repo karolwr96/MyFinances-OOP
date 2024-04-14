@@ -7,7 +7,7 @@ namespace App\Controllers;
 use Framework\TemplateEngine;
 use App\Services\{ValidatorService, TransactionService, UserService};
 
-class IncomeController
+class ExpenseController
 {
     public function __construct(
         private TemplateEngine $view,
@@ -19,22 +19,24 @@ class IncomeController
 
     public function createView()
     {
-        $incomesCategories = $this->userService->getUserIncomeSource();
+        $userExpenseCategory = $this->userService->getUserExpenseCategory();
+        $userPaymentMethods = $this->userService->getUserPaymentMethods();
 
         echo $this->view->render(
-            "transactions/createIncome.php",
+            "transactions/createExpense.php",
             [
-                'incomeSources' => $incomesCategories
+                'rows' => $userExpenseCategory,
+                'payment' => $userPaymentMethods
             ]
         );
     }
 
     public function create()
     {
-        $this->validatorService->validateIncome($_POST);
+        $this->validatorService->validateTransaction($_POST);
 
-        $this->transactionService->createIncome($_POST);
+        $this->transactionService->createExpense($_POST);
 
-        redirectTo('/income');
+        redirectTo('/expense');
     }
 }
