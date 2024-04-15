@@ -60,6 +60,8 @@
                                 <?php
                                 if (isset($_SESSION['incomesList'])) {
                                     $arrayWithResult = $_SESSION['incomesList'];
+
+
                                     foreach ($arrayWithResult as $row) {
                                         echo "<tr>
                     <td>{$row['category']}</td>
@@ -69,6 +71,9 @@
                                 }
                                 ?>
                             </tbody>
+
+                            <canvas id="pieChart"></canvas>
+
                         </table>
 
                         <table class="table">
@@ -88,16 +93,18 @@
                                 <?php
                                 if (isset($_SESSION['expensesList'])) {
                                     $arrayWithExpenses = $_SESSION['expensesList'];
-                                    foreach ($arrayWithExpenses as $row) {
+                                    foreach ($arrayWithExpenses as $newRow) {
                                         echo "<tr>
-                    <td>{$row['category']}</td>
-                    <td>{$row['amount']}</td>
+                    <td>{$newRow['category']}</td>
+                    <td>{$newRow['amount']}</td>
                     </tr>";
                                     }
                                 }
                                 ?>
                             </tbody>
                         </table>
+
+                        <canvas id="pieChart"></canvas>
 
                         <div class="my-3">
                             <h5 class="px-3" style="text-align: center;">Your balance is: <?php
@@ -135,6 +142,73 @@
         }
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Get the table data
+    const tableData = <?php echo json_encode($arrayWithResult); ?>;
+
+    // Extract the category and amount from the table data
+    const categories = tableData.map((row) => row.category);
+    const amounts = tableData.map((row) => row.amount);
+
+    // Create a new Chart instance
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: categories,
+            datasets: [{
+                data: amounts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                ],
+            }, ],
+        },
+        options: {
+            responsive: true,
+        },
+    });
+</script>
+
+<script>
+    // Get the table data
+    const tableData = <?php echo json_encode($arrayWithExpenses); ?>;
+
+    // Extract the category names and amounts from the table data
+    const expenseCategories = tableData.map(row => row.category);
+    const expenseAmounts = tableData.map(row => row.amount);
+
+    // Create a new Chart instance
+    const ctx2 = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: expenseCategories,
+            datasets: [{
+                data: expenseAmounts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)'
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
 </body>
 
 </html>
