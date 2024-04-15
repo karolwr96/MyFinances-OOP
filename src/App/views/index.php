@@ -46,11 +46,7 @@
                     <div class="pb-3">
                         <table class="table">
                             <thead>
-                                <h6 class="px-2">Total incomes: <?php if (!isset($_SESSION['totalIncomes'])) {
-                                                                    echo '0';
-                                                                } else {
-                                                                    echo ($_SESSION['totalIncomes']);
-                                                                } ?></h6>
+
                                 <tr>
                                     <th>Category</th>
                                     <th>Amount</th>
@@ -71,19 +67,21 @@
                                 }
                                 ?>
                             </tbody>
-
-                            <canvas id="pieChart"></canvas>
-
                         </table>
+
+                        <h5 class="px-2">Total incomes: <?php if (!isset($_SESSION['totalIncomes'])) {
+                                                            echo '0';
+                                                        } else {
+                                                            echo ($_SESSION['totalIncomes']);
+                                                        } ?></h5>
+
+                        <div>
+                            <canvas id="incomesChart"></canvas>
+                        </div>
 
                         <table class="table">
                             <thead>
-                                <h6 class="px-2">Total expenses: <?php if (!isset($_SESSION['totalExpense'])) {
-                                                                        echo '0';
-                                                                    } else {
-                                                                        echo ($_SESSION['totalExpense']);
-                                                                    } ?>
-                                </h6>
+
                                 <tr>
                                     <th>Category</th>
                                     <th>Amount</th>
@@ -104,7 +102,16 @@
                             </tbody>
                         </table>
 
-                        <canvas id="pieChart"></canvas>
+                        <h5 class="px-2">Total expenses: <?php if (!isset($_SESSION['totalExpense'])) {
+                                                                echo '0';
+                                                            } else {
+                                                                echo ($_SESSION['totalExpense']);
+                                                            } ?>
+                        </h5>
+
+                        <div>
+                            <canvas id="expenseChart"></canvas>
+                        </div>
 
                         <div class="my-3">
                             <h5 class="px-3" style="text-align: center;">Your balance is: <?php
@@ -130,6 +137,8 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     function toggleFields() {
         const select = document.getElementById('options');
@@ -143,24 +152,22 @@
     }
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
     // Get the table data
-    const tableData = <?php echo json_encode($arrayWithResult); ?>;
+    const incomesTable = <?php echo json_encode($arrayWithResult); ?>;
 
     // Extract the category and amount from the table data
-    const categories = tableData.map((row) => row.category);
-    const amounts = tableData.map((row) => row.amount);
+    const incomeCategories = incomesTable.map((row) => row.category);
+    const incomeAmounts = incomesTable.map((row) => row.amount);
 
     // Create a new Chart instance
-    const ctx = document.getElementById('pieChart').getContext('2d');
+    const ctx = document.getElementById('incomesChart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: categories,
+            labels: incomeCategories,
             datasets: [{
-                data: amounts,
+                data: incomeAmounts,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.8)',
                     'rgba(54, 162, 235, 0.8)',
@@ -172,21 +179,22 @@
         },
         options: {
             responsive: true,
+            maintainAspectRatio: true
         },
     });
 </script>
 
 <script>
     // Get the table data
-    const tableData = <?php echo json_encode($arrayWithExpenses); ?>;
+    const expenseTable = <?php echo json_encode($arrayWithExpenses); ?>;
 
     // Extract the category names and amounts from the table data
-    const expenseCategories = tableData.map(row => row.category);
-    const expenseAmounts = tableData.map(row => row.amount);
+    const expenseCategories = expenseTable.map(row => row.category);
+    const expenseAmounts = expenseTable.map(row => row.amount);
 
     // Create a new Chart instance
-    const ctx2 = document.getElementById('pieChart').getContext('2d');
-    new Chart(ctx2, {
+    const ctx1 = document.getElementById('expenseChart').getContext('2d');
+    new Chart(ctx1, {
         type: 'pie',
         data: {
             labels: expenseCategories,
@@ -198,13 +206,18 @@
                     'rgba(255, 206, 86, 0.8)',
                     'rgba(75, 192, 192, 0.8)',
                     'rgba(153, 102, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)'
+                    'rgba(253, 2, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(166, 11, 80, 0.3)',
+                    'rgba(159, 55, 118, 0.1)',
+                    'rgba(157, 171, 220, 0.6)',
+                    'rgba(115, 224, 189, 0.8)',
                 ],
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: true
         }
     });
 </script>
