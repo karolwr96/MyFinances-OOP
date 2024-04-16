@@ -190,4 +190,65 @@ class TransactionService
             ]
         )->findAll();
     }
+
+    public function startFunction()
+    {
+        $currentMonth = date('m');
+        $currentYear = date('Y');
+        $startDate = date('Y-m-01', strtotime($currentYear . '-' . $currentMonth . '-01'));
+        $endDate = date('Y-m-t', strtotime($currentYear . '-' . $currentMonth . '-01'));
+
+        $queryResult = $this->db->query(
+            "SELECT SUM(amount) AS totalIncomes FROM incomes 
+                WHERE user_id = :userId AND date_of_income  BETWEEN :startDate AND :endDate LIMIT 1",
+            [
+                'userId' => $_SESSION['user'],
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ]
+        )->findAll();
+
+        $_SESSION['totalIncomes'] = $queryResult[0]['totalIncomes'];
+
+        $queryResult = $this->db->query(
+            "SELECT SUM(amount) AS totalExpenses FROM expenses   
+                WHERE user_id = :userId AND date_of_expense BETWEEN :startDate AND :endDate LIMIT 1",
+            [
+                'userId' => $_SESSION['user'],
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ]
+        )->findAll();
+
+        $_SESSION['totalExpense'] = $queryResult[0]['totalExpenses'];
+
+
+        $_SESSION['incomesList'] = $this->db->query(
+            "SELECT incomes_category_assigned_to_users.name AS category, 
+             SUM(incomes.amount) AS amount
+             FROM incomes_category_assigned_to_users
+             INNER JOIN incomes ON incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id WHERE incomes.user_id = :userId AND incomes.date_of_income  
+             BETWEEN :startDate AND :endDate
+             GROUP BY incomes.income_category_assigned_to_user_id ORDER BY amount DESC",
+            [
+                'userId' => $_SESSION['user'],
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ]
+        )->findAll();
+
+        $_SESSION['expensesList'] = $this->db->query(
+            "SELECT expenses_category_assigned_to_users.name AS category, 
+             SUM(expenses.amount) AS amount
+             FROM expenses_category_assigned_to_users 
+             INNER JOIN expenses  ON expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id WHERE expenses.user_id = :userId AND expenses.date_of_expense  
+             BETWEEN :startDate AND :endDate
+             GROUP BY expenses.expense_category_assigned_to_user_id ORDER BY amount DESC",
+            [
+                'userId' => $_SESSION['user'],
+                'startDate' => $startDate,
+                'endDate' => $endDate
+            ]
+        )->findAll();
+    }
 }

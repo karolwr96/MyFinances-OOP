@@ -13,7 +13,7 @@ class HomeController
     public function __construct(
         private TemplateEngine $view,
         private ValidatorService $validatorService,
-        private TransactionService $transactionService
+        private TransactionService $transactionService,
         //private UserService $userService
     ) {
     }

@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Services\{ValidatorService, UserService};
+use App\Services\{ValidatorService, UserService, TransactionService};
 
 class AuthController
 {
     public function __construct(
         private TemplateEngine $view,
         private ValidatorService $validatorService,
-        private UserService $userService
+        private UserService $userService,
+        private TransactionService  $transactionService
     ) {
     }
 
@@ -39,6 +40,9 @@ class AuthController
     {
         $this->validatorService->validateLogin($_POST);
         $this->userService->login($_POST);
+
+        $this->transactionService->startFunction();
+
         redirectTo('/');
     }
 

@@ -68,12 +68,13 @@
                                 ?>
                             </tbody>
                         </table>
-
-                        <h5 class="px-2">Total incomes: <?php if (!isset($_SESSION['totalIncomes'])) {
-                                                            echo '0';
-                                                        } else {
-                                                            echo ($_SESSION['totalIncomes']);
-                                                        } ?></h5>
+                        <div class="my-3">
+                            <h5 class="px-3" style="text-align: center;">Total incomes: <?php if (!isset($_SESSION['totalIncomes'])) {
+                                                                                            echo '0';
+                                                                                        } else {
+                                                                                            echo ($_SESSION['totalIncomes']);
+                                                                                        } ?></h5>
+                        </div>
 
                         <div>
                             <canvas id="incomesChart"></canvas>
@@ -102,14 +103,18 @@
                             </tbody>
                         </table>
 
-                        <h5 class="px-2">Total expenses: <?php if (!isset($_SESSION['totalExpense'])) {
-                                                                echo '0';
-                                                            } else {
-                                                                echo ($_SESSION['totalExpense']);
-                                                            } ?>
-                        </h5>
 
-                        <div>
+                        <div class="my-3">
+                            <h5 class="px-3" style="text-align: center;">Total expenses: <?php if (!isset($_SESSION['totalExpense'])) {
+                                                                                                echo '0';
+                                                                                            } else {
+                                                                                                echo ($_SESSION['totalExpense']);
+                                                                                            } ?>
+                            </h5>
+                        </div>
+
+
+                        <div id="chartContainer">
                             <canvas id="expenseChart"></canvas>
                         </div>
 
@@ -153,14 +158,15 @@
 </script>
 
 <script>
-    // Get the table data
     const incomesTable = <?php echo json_encode($arrayWithResult); ?>;
 
-    // Extract the category and amount from the table data
+    if (incomesTable && incomesTable.length === 0) {
+        document.getElementById('incomesChart').style.display = 'none';
+    }
+
     const incomeCategories = incomesTable.map((row) => row.category);
     const incomeAmounts = incomesTable.map((row) => row.amount);
 
-    // Create a new Chart instance
     const ctx = document.getElementById('incomesChart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',
@@ -185,14 +191,16 @@
 </script>
 
 <script>
-    // Get the table data
     const expenseTable = <?php echo json_encode($arrayWithExpenses); ?>;
 
-    // Extract the category names and amounts from the table data
+
+    if (expenseTable && expenseTable.length === 0) {
+        document.getElementById('expenseChart').style.display = 'none';
+    }
+
     const expenseCategories = expenseTable.map(row => row.category);
     const expenseAmounts = expenseTable.map(row => row.amount);
 
-    // Create a new Chart instance
     const ctx1 = document.getElementById('expenseChart').getContext('2d');
     new Chart(ctx1, {
         type: 'pie',
