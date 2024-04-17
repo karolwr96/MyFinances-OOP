@@ -144,91 +144,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    function toggleFields() {
-        const select = document.getElementById('options');
-        const fields = document.getElementById('fields');
-
-        if (select.value === 'individualInterval') {
-            fields.classList.remove('hidden');
-        } else {
-            fields.classList.add('hidden');
-        }
-    }
-</script>
+<script src="/assets/scripts/toogle.js"> </script>
 
 <script>
     const incomesTable = <?php echo json_encode($arrayWithResult); ?>;
-
-    if (incomesTable && incomesTable.length === 0) {
-        document.getElementById('incomesChart').style.display = 'none';
-    }
-
-    const incomeCategories = incomesTable.map((row) => row.category);
-    const incomeAmounts = incomesTable.map((row) => row.amount);
-
-    const ctx = document.getElementById('incomesChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: incomeCategories,
-            datasets: [{
-                data: incomeAmounts,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                ],
-            }, ],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true
-        },
-    });
-</script>
-
-<script>
     const expenseTable = <?php echo json_encode($arrayWithExpenses); ?>;
-
-
-    if (expenseTable && expenseTable.length === 0) {
-        document.getElementById('expenseChart').style.display = 'none';
-    }
-
-    const expenseCategories = expenseTable.map(row => row.category);
-    const expenseAmounts = expenseTable.map(row => row.amount);
-
-    const ctx1 = document.getElementById('expenseChart').getContext('2d');
-    new Chart(ctx1, {
-        type: 'pie',
-        data: {
-            labels: expenseCategories,
-            datasets: [{
-                data: expenseAmounts,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(54, 162, 235, 0.8)',
-                    'rgba(255, 206, 86, 0.8)',
-                    'rgba(75, 192, 192, 0.8)',
-                    'rgba(153, 102, 255, 0.8)',
-                    'rgba(253, 2, 255, 0.8)',
-                    'rgba(255, 159, 64, 0.8)',
-                    'rgba(166, 11, 80, 0.3)',
-                    'rgba(159, 55, 118, 0.1)',
-                    'rgba(157, 171, 220, 0.6)',
-                    'rgba(115, 224, 189, 0.8)',
-                ],
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true
-        }
-    });
 </script>
+
+<script src="/assets/scripts/incomesChart.js"> </script>
+<script src="/assets/scripts/expensesChart.js"> </script>
 
 </body>
 
