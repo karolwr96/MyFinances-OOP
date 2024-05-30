@@ -11,7 +11,8 @@ use App\Controllers\{
     ExpenseController,
     IncomeController,
     HowToUseController,
-    ErrorController
+    ErrorController,
+    SettingsController
 };
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
 
@@ -29,5 +30,7 @@ function registerRoutes(App $app)
     $app->get('/income', [IncomeController::class, 'createView'])->add(AuthRequiredMiddleware::class);
     $app->post('/income', [IncomeController::class, 'create'])->add(AuthRequiredMiddleware::class);
     $app->get('/howToUse', [HowToUseController::class, 'createView'])->add(AuthRequiredMiddleware::class);
+    $app->get('/settings', [SettingsController::class, 'createView'])->add(AuthRequiredMiddleware::class);
+    //$app->post('/settings', [SettingsController::class, 'showBalance'])->add(AuthRequiredMiddleware::class);
     $app->setErrorHandler([ErrorController::class, 'notFound']);
 }
