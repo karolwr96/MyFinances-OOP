@@ -26,36 +26,11 @@
                                 }
                                 ?>
                             </select>
-                            <input type="text" name="editField" placeholder="Edit Field">
+                            <input type="text" name="editField" placeholder="New name">
                             <button type="submit" name="applyButton">Apply</button>
                         </div>
 
-                        <h6 class="px-2">Expense categories</h6>
-                        <div class="pb-3">
-                            <select class="form-select" name="category" aria-label="Default select example" value="">
-                                <?php
-                                foreach ($rows as $row) {
-                                ?>
-                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
 
-                        <h6 class="px-2"> Payment method</h6>
-                        <div class="pb-3">
-                            <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
-                                <?php
-                                //$rowsWithPayment = $_SESSION['payMethods'];
-                                foreach ($payment as $row) {
-                                ?>
-                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
 
 
                         <div class="text-center pb-4">
