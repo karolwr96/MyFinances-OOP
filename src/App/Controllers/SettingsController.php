@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Services\{ValidatorService, TransactionService, UserService, SettingService};
+use App\Config\Paths;
+use App\Services\{UserService, SettingsService};
 
 class SettingsController
 {
     public function __construct(
         private TemplateEngine $view,
         private UserService $userService,
+        private SettingsService $settingsService
     ) {
     }
 
@@ -29,5 +31,11 @@ class SettingsController
                 'payment' => $userPaymentMethods
             ]
         );
+    }
+
+    public function editField()
+    {
+        $this->settingsService->editFieldName($_POST);
+        redirectTo('/settings');
     }
 }

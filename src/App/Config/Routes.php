@@ -31,6 +31,6 @@ function registerRoutes(App $app)
     $app->post('/income', [IncomeController::class, 'create'])->add(AuthRequiredMiddleware::class);
     $app->get('/howToUse', [HowToUseController::class, 'createView'])->add(AuthRequiredMiddleware::class);
     $app->get('/settings', [SettingsController::class, 'createView'])->add(AuthRequiredMiddleware::class);
-    //$app->post('/settings', [SettingsController::class, 'showBalance'])->add(AuthRequiredMiddleware::class);
+    $app->post('/settings', [SettingsController::class, 'editField'])->add(AuthRequiredMiddleware::class);
     $app->setErrorHandler([ErrorController::class, 'notFound']);
 }
