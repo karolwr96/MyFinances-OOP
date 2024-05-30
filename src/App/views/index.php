@@ -127,7 +127,7 @@
                                                                                             }
 
                                                                                             if (isset($_SESSION['totalIncomes'])) {
-                                                                                                $expenses = $_SESSION['totalExpense'];
+                                                                                                $incomes = $_SESSION['totalIncomes'];
                                                                                             }
                                                                                             $total = $incomes - $expenses;
                                                                                             echo $total;
