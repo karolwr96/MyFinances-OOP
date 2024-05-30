@@ -13,6 +13,50 @@
                     <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-4 border-top-0"></div>
                     <div class="container">
 
+                        <h6 class="px-2">Change category name: </h6>
+
+                        <h6 class="px-2">Sources of incomes</h6>
+                        <div class="pb-3">
+                            <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
+                                <?php
+                                foreach ($incomeSources as $row) {
+                                ?>
+                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                            <input type="text" name="editField" placeholder="Edit Field">
+                            <button type="submit" name="applyButton">Apply</button>
+                        </div>
+
+                        <h6 class="px-2">Expense categories</h6>
+                        <div class="pb-3">
+                            <select class="form-select" name="category" aria-label="Default select example" value="">
+                                <?php
+                                foreach ($rows as $row) {
+                                ?>
+                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <h6 class="px-2"> Payment method</h6>
+                        <div class="pb-3">
+                            <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
+                                <?php
+                                //$rowsWithPayment = $_SESSION['payMethods'];
+                                foreach ($payment as $row) {
+                                ?>
+                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+
 
                         <div class="text-center pb-4">
                             <a href="/" class="btn btn-lg btn-secondary mb-2" style="width: 40%">
