@@ -15,19 +15,21 @@
 
                         <h6 class="px-2">Change category name: </h6>
 
-                        <h6 class="px-2 py-2">1. Sources of incomes</h6>
-                        <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
-                            <?php
-                            foreach ($incomeSources as $row) {
-                            ?>
-                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                        <div class=" pt-3 pb-3 d-flex">
-                            <input style="width: 65%;" type="text" class="form-control  me-2" name="editField" placeholder="New name">
-                            <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editSourcesOfIncomes">Apply</button>
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(1)">1. Sources of incomes</h6>
+                        <div id="div1" style="display: none;">
+                            <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
+                                <?php
+                                foreach ($incomeSources as $row) {
+                                ?>
+                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                            <div class=" pt-3 pb-3 d-flex">
+                                <input style="width: 65%;" type="text" class="form-control  me-2" name="editField" placeholder="New name">
+                                <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editSourcesOfIncomes">Apply</button>
+                            </div>
                         </div>
 
                         <h6 class="px-2">2. Expense category</h6>
@@ -60,6 +62,8 @@
                             <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentName" placeholder="New name">
                             <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editPaymentMethod">Apply</button>
                         </div>
+
+
 
                         <hr>
 
@@ -144,6 +148,7 @@
     </form>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="/assets/scripts/toogleVisibility.js"> </script>
 </body>
 
 </html>
