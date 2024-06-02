@@ -45,7 +45,7 @@ class SettingsService
             [
                 'userId' => $_SESSION['user'],
                 'paymentMethod' => $formData['paymentMethod'],
-                'newName' => $formData['newName'],
+                'newName' => $formData['newPaymentName'],
             ]
         );
     }

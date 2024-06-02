@@ -15,8 +15,80 @@
 
                         <h6 class="px-2">Change category name: </h6>
 
-                        <h6 class="px-2">Sources of incomes</h6>
-                        <div class="pb-3">
+                        <h6 class="px-2 py-2">1. Sources of incomes</h6>
+                        <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
+                            <?php
+                            foreach ($incomeSources as $row) {
+                            ?>
+                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <div class=" pt-3 pb-3 d-flex">
+                            <input style="width: 65%;" type="text" class="form-control  me-2" name="editField" placeholder="New name">
+                            <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editSourcesOfIncomes">Apply</button>
+                        </div>
+
+                        <h6 class="px-2">2. Expense category</h6>
+                        <select class="form-select" name="category" aria-label="Default select example" value="">
+                            <?php
+                            foreach ($rows as $row) {
+                            ?>
+                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <div class=" pt-3 pb-3 d-flex">
+                            <input style="width: 65%;" type="text" class="form-control  me-2" name="editExpense" placeholder="New name">
+                            <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editExpenseCategory">Apply</button>
+                        </div>
+
+                        <h6 class="px-2">3. Payment method</h6>
+                        <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
+                            <?php
+                            //$rowsWithPayment = $_SESSION['payMethods'];
+                            foreach ($payment as $row) {
+                            ?>
+                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>
+                        <div class=" pt-3 pb-3 d-flex">
+                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentName" placeholder="New name">
+                            <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editPaymentMethod">Apply</button>
+                        </div>
+
+                        <hr>
+
+                        <h6 class="px-2">Add another category: </h6>
+
+                        <h6 class="px-2 py-2">4. New sources of incomes</h6>
+                        <div class=" pb-3 d-flex">
+                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
+                            <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewSourcesOfIncomes">Add</button>
+                        </div>
+
+                        <h6 class="px-2 py-2">5. New expense category</h6>
+                        <div class=" pb-3 d-flex">
+                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
+                            <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewExpenseCategory">Add</button>
+                        </div>
+
+                        <h6 class="px-2 py-2">6. New payment method</h6>
+                        <div class=" pb-3 d-flex">
+                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
+                            <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewPaymentMethod">Add</button>
+                        </div>
+
+                        <hr>
+
+                        <h6 class="px-2">Remove current category: </h6>
+
+                        <h6 class="px-2 py-2">7. Delete source of income</h6>
+                        <div class=" pt-3 pb-3 d-flex">
                             <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
                                 <?php
                                 foreach ($incomeSources as $row) {
@@ -26,12 +98,11 @@
                                 }
                                 ?>
                             </select>
-                            <input type="text" name="editField" placeholder="New name">
-                            <button type="submit" name="editSourcesOfIncomes">Apply</button>
+                            <button style="width: 25%;" type="submit" class="btn btn-danger" name="deleteSourceOfIncome">Delete</button>
                         </div>
 
-                        <h6 class="px-2">Expense category</h6>
-                        <div class="pb-3">
+                        <h6 class="px-2 py-2">8. Delete expense category</h6>
+                        <div class=" pt-3 pb-3 d-flex">
                             <select class="form-select" name="category" aria-label="Default select example" value="">
                                 <?php
                                 foreach ($rows as $row) {
@@ -41,12 +112,11 @@
                                 }
                                 ?>
                             </select>
-                            <input type="text" name="editExpense" placeholder="New name">
-                            <button type="submit" name="editExpenseCategory">Apply</button>
+                            <button style="width: 25%;" type="submit" class="btn btn-danger" name="deleteExpenseCategory">Delete</button>
                         </div>
 
-                        <h6 class="px-2"> Payment method</h6>
-                        <div class="pb-3">
+                        <h6 class="px-2 py-2">9. Delete payment method</h6>
+                        <div class=" pt-3 pb-3 d-flex">
                             <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
                                 <?php
                                 //$rowsWithPayment = $_SESSION['payMethods'];
@@ -57,12 +127,8 @@
                                 }
                                 ?>
                             </select>
-                            <input type="text" name="newName" placeholder="New name">
-                            <button type="submit" name="editPaymentMethod">Apply</button>
+                            <button style="width: 25%;" type="submit" class="btn btn-danger" name="deletePaymentMethod">Delete</button>
                         </div>
-
-
-
 
 
                         <div class="text-center pb-4">
@@ -75,7 +141,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
     </form>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
