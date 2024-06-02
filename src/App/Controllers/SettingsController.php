@@ -35,7 +35,16 @@ class SettingsController
 
     public function editField()
     {
-        $this->settingsService->editFieldName($_POST);
+        if (array_key_exists('editSourcesOfIncomes', $_POST)) {
+            $this->settingsService->editIncomesCategoryName($_POST);
+        }
+        if (array_key_exists('editExpenseCategory', $_POST)) {
+            $this->settingsService->editExpenseCategoryName($_POST);
+        }
+        if (array_key_exists('editPaymentMethod', $_POST)) {
+            $this->settingsService->editPaymentMethodName($_POST);
+        }
+
         redirectTo('/settings');
     }
 }

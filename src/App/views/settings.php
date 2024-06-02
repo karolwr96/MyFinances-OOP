@@ -27,8 +27,40 @@
                                 ?>
                             </select>
                             <input type="text" name="editField" placeholder="New name">
-                            <button type="submit" name="applyButton">Apply</button>
+                            <button type="submit" name="editSourcesOfIncomes">Apply</button>
                         </div>
+
+                        <h6 class="px-2">Expense category</h6>
+                        <div class="pb-3">
+                            <select class="form-select" name="category" aria-label="Default select example" value="">
+                                <?php
+                                foreach ($rows as $row) {
+                                ?>
+                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                            <input type="text" name="editExpense" placeholder="New name">
+                            <button type="submit" name="editExpenseCategory">Apply</button>
+                        </div>
+
+                        <h6 class="px-2"> Payment method</h6>
+                        <div class="pb-3">
+                            <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
+                                <?php
+                                //$rowsWithPayment = $_SESSION['payMethods'];
+                                foreach ($payment as $row) {
+                                ?>
+                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                            <input type="text" name="newName" placeholder="New name">
+                            <button type="submit" name="editPaymentMethod">Apply</button>
+                        </div>
+
 
 
 

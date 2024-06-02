@@ -14,11 +14,8 @@ class SettingsService
     {
     }
 
-    public function editFieldName(array $formData)
+    public function editIncomesCategoryName(array $formData)
     {
-        //$categoryToChangeName => $formData['amount'],
-        // $newCategoryToChangeName => $formData['editField'];
-
         $this->db->query(
             "UPDATE `incomes_category_assigned_to_users` SET `name` = :newName WHERE user_id = :userId AND name = :incomeCategory",
             [
@@ -27,30 +24,29 @@ class SettingsService
                 'newName' => $formData['editField'],
             ]
         );
-        // SET name = 'TEST123' 
-        //WHERE name = 'Wyplata' AND user_id = 13;    
+    }
 
-        /* $emailCount =  $this->db->query(
-            "SELECT COUNT(*) FROM users WHERE email =:email",
-            [
-                'email' => $email
-            ]
-        )->count();
+    public function editExpenseCategoryName(array $formData)
+    {
         $this->db->query(
-            "INSERT INTO expenses(user_id, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, amount,date_of_expense, expense_comment)
-             VALUES(:user_id, :idExpenseCategory, :idPaymentMethod, :expenseSum, :expenseDate, :comment)",
+            "UPDATE `expenses_category_assigned_to_users` SET `name` = :newName WHERE user_id = :userId AND name = :expenseCategory",
             [
-                'user_id' => $_SESSION['user'],
-                'idExpenseCategory' => $idExpenseCategory,
-                'idPaymentMethod' =>  $idPaymentMethod,
-                'expenseSum' => $formData['amount'],
-                'expenseDate' => $formData['date'],
-                'comment' => $formData['description'],
+                'userId' => $_SESSION['user'],
+                'expenseCategory' => $formData['category'],
+                'newName' => $formData['editExpense'],
             ]
         );
+    }
 
-        if ($emailCount > 0) {
-            throw new ValidationException(['email' => ['Email taken']]);
-        }*/
+    public function editPaymentMethodName(array $formData)
+    {
+        $this->db->query(
+            "UPDATE `payment_methods_assigned_to_users` SET `name` = :newName WHERE user_id = :userId AND name = :paymentMethod",
+            [
+                'userId' => $_SESSION['user'],
+                'paymentMethod' => $formData['paymentMethod'],
+                'newName' => $formData['newName'],
+            ]
+        );
     }
 }
