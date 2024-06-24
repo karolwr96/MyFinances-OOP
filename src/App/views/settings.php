@@ -32,81 +32,8 @@
                             </div>
                         </div>
 
-                        <h6 class="px-2">2. Expense category</h6>
-                        <select class="form-select" name="category" aria-label="Default select example" value="">
-                            <?php
-                            foreach ($rows as $row) {
-                            ?>
-                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                        <div class=" pt-3 pb-3 d-flex">
-                            <input style="width: 65%;" type="text" class="form-control  me-2" name="editExpense" placeholder="New name">
-                            <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editExpenseCategory">Apply</button>
-                        </div>
-
-                        <h6 class="px-2">3. Payment method</h6>
-                        <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
-                            <?php
-                            //$rowsWithPayment = $_SESSION['payMethods'];
-                            foreach ($payment as $row) {
-                            ?>
-                                <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                        <div class=" pt-3 pb-3 d-flex">
-                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentName" placeholder="New name">
-                            <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editPaymentMethod">Apply</button>
-                        </div>
-
-
-
-                        <hr>
-
-                        <h6 class="px-2">Add another category: </h6>
-
-                        <h6 class="px-2 py-2">4. New sources of incomes</h6>
-                        <div class=" pb-3 d-flex">
-                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
-                            <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewSourcesOfIncomes">Add</button>
-                        </div>
-
-                        <h6 class="px-2 py-2">5. New expense category</h6>
-                        <div class=" pb-3 d-flex">
-                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
-                            <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewExpenseCategory">Add</button>
-                        </div>
-
-                        <h6 class="px-2 py-2">6. New payment method</h6>
-                        <div class=" pb-3 d-flex">
-                            <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
-                            <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewPaymentMethod">Add</button>
-                        </div>
-
-                        <hr>
-
-                        <h6 class="px-2">Remove current category: </h6>
-
-                        <h6 class="px-2 py-2">7. Delete source of income</h6>
-                        <div class=" pt-3 pb-3 d-flex">
-                            <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
-                                <?php
-                                foreach ($incomeSources as $row) {
-                                ?>
-                                    <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                            <button style="width: 25%;" type="submit" class="btn btn-danger" name="deleteSourceOfIncome">Delete</button>
-                        </div>
-
-                        <h6 class="px-2 py-2">8. Delete expense category</h6>
-                        <div class=" pt-3 pb-3 d-flex">
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(2)">2. Expense category</h6>
+                        <div id="div2" style="display: none;">
                             <select class="form-select" name="category" aria-label="Default select example" value="">
                                 <?php
                                 foreach ($rows as $row) {
@@ -116,11 +43,14 @@
                                 }
                                 ?>
                             </select>
-                            <button style="width: 25%;" type="submit" class="btn btn-danger" name="deleteExpenseCategory">Delete</button>
+                            <div class=" pt-3 pb-3 d-flex">
+                                <input style="width: 65%;" type="text" class="form-control  me-2" name="editExpense" placeholder="New name">
+                                <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editExpenseCategory">Apply</button>
+                            </div>
                         </div>
 
-                        <h6 class="px-2 py-2">9. Delete payment method</h6>
-                        <div class=" pt-3 pb-3 d-flex">
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(3)">3. Payment method</h6>
+                        <div id="div3" style="display: none;">
                             <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
                                 <?php
                                 //$rowsWithPayment = $_SESSION['payMethods'];
@@ -131,7 +61,91 @@
                                 }
                                 ?>
                             </select>
-                            <button style="width: 25%;" type="submit" class="btn btn-danger" name="deletePaymentMethod">Delete</button>
+                            <div class=" pt-3 pb-3 d-flex">
+                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentName" placeholder="New name">
+                                <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editPaymentMethod">Apply</button>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h6 class="px-2">Add another category: </h6>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(4)">4. New sources of incomes</h6>
+                        <div id="div4" style="display: none;">
+                            <div class=" pb-3 d-flex">
+                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
+                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewSourcesOfIncomes">Add</button>
+                            </div>
+                        </div>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(5)">5. New expense category</h6>
+                        <div id="div5" style="display: none;">
+                            <div class=" pb-3 d-flex">
+                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
+                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewExpenseCategory">Add</button>
+                            </div>
+                        </div>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(6)">6. New payment method</h6>
+                        <div id="div6" style="display: none;">
+                            <div class=" pb-3 d-flex">
+                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
+                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewPaymentMethod">Add</button>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h6 class="px-2">Remove current category: </h6>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(7)">7. Delete source of income</h6>
+                        <div id="div7" style="display: none;">
+                            <div class=" pt-3 pb-3 d-flex">
+                                <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
+                                    <?php
+                                    foreach ($incomeSources as $row) {
+                                    ?>
+                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                                <button style="width: 25%;" type="submit" class="btn btn-danger" name="deleteSourceOfIncome">Delete</button>
+                            </div>
+                        </div>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(8)">8. Delete expense category</h6>
+                        <div id="div8" style="display: none;">
+                            <div class=" pt-3 pb-3 d-flex">
+                                <select class="form-select" name="category" aria-label="Default select example" value="">
+                                    <?php
+                                    foreach ($rows as $row) {
+                                    ?>
+                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                                <button style="width: 25%;" type="submit" class="btn btn-danger" name="deleteExpenseCategory">Delete</button>
+                            </div>
+                        </div>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(9)">9. Delete payment method</h6>
+                        <div id="div9" style="display: none;">
+                            <div class=" pt-3 pb-3 d-flex">
+                                <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
+                                    <?php
+                                    //$rowsWithPayment = $_SESSION['payMethods'];
+                                    foreach ($payment as $row) {
+                                    ?>
+                                        <option value="<?= $row['name'] ?>"><?= $row['name'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                                <button style="width: 25%;" type="submit" class="btn btn-danger" name="deletePaymentMethod">Delete</button>
+                            </div>
                         </div>
 
 
