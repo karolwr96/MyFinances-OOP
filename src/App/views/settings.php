@@ -1,4 +1,7 @@
-<?php include $this->resolve("partials/_header.php"); ?>
+<?php include $this->resolve("partials/_header.php");
+echo '<pre>';
+var_dump($_SESSION);
+echo '</pre>'; ?>
 
 <section id="add-Revenue-menu">
     <form method="post">

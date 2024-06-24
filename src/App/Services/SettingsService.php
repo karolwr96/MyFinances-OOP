@@ -82,4 +82,34 @@ class SettingsService
             ]
         );
     }
+
+    public function deleteSourceOfIncome(array $formData)
+    {
+        $incomeCategoryId = $this->db->query(
+            "SELECT id FROM incomes_category_assigned_to_users 
+             WHERE user_id = :userId AND name = :incomeCategory",
+            [
+                'userId' => $_SESSION['user'],
+                'incomeCategory' => $formData['sourceOfIncome']
+            ]
+        )->count();
+
+        $this->db->query(
+            "DELETE FROM `incomes_category_assigned_to_users` WHERE user_id = :userId AND name = :incomeCategory",
+            [
+                'userId' => $_SESSION['user'],
+                'incomeCategory' => $formData['sourceOfIncome'],
+            ]
+        );
+
+        $_SESSION['idCat'] = $incomeCategoryId;
+
+        $this->db->query(
+            "DELETE FROM `incomes` WHERE user_id = :userId AND income_category_assigned_to_user_id = :incomeCategoryId",
+            [
+                'userId' => $_SESSION['user'],
+                'incomeCategoryId' => $incomeCategoryId
+            ]
+        );
+    }
 }

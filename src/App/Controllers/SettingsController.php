@@ -57,6 +57,10 @@ class SettingsController
             $this->settingsService->addNewPaymentMethod($_POST);
         }
 
+        if (array_key_exists('deleteSourceOfIncome', $_POST)) {
+            $this->settingsService->deleteSourceOfIncome($_POST);
+        }
+
         redirectTo('/settings');
     }
 }

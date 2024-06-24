@@ -39,6 +39,19 @@ class TransactionService
         return $paymentMethodId;
     }
 
+    public function getCurrentIncomeCategoryId(array $formData)
+    {
+        $incomeCategoryId = $this->db->query(
+            "SELECT id FROM incomes_category_assigned_to_users 
+             WHERE user_id = :userId AND name = :incomeCategory",
+            [
+                'userId' => $_SESSION['user'],
+                'incomeCategory' => $formData['sourceOfIncome']
+            ]
+        )->count();
+        return $incomeCategoryId;
+    }
+
     public function createExpense(array $formData)
     {
         $idExpenseCategory = self::getCurrentExpenseCategoryId($formData);
@@ -59,19 +72,6 @@ class TransactionService
         );
 
         $_SESSION['successfulAddedExpense'] = true;
-    }
-
-    public function getCurrentIncomeCategoryId(array $formData)
-    {
-        $incomeCategoryId = $this->db->query(
-            "SELECT id FROM incomes_category_assigned_to_users 
-             WHERE user_id = :userId AND name = :incomeCategory",
-            [
-                'userId' => $_SESSION['user'],
-                'incomeCategory' => $formData['sourceOfIncome']
-            ]
-        )->count();
-        return $incomeCategoryId;
     }
 
     public function createIncome(array $formData)
