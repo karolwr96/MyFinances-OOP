@@ -49,4 +49,37 @@ class SettingsService
             ]
         );
     }
+
+    public function addNewIncomesCategory(array $formData)
+    {
+        $this->db->query(
+            "INSERT INTO `incomes_category_assigned_to_users` (user_id, name) VALUES (:userId, :newSourceOfIncome)",
+            [
+                'userId' => $_SESSION['user'],
+                'newSourceOfIncome' => $formData['newSourceOfIncome']
+            ]
+        );
+    }
+
+    public function addNewExpenseCategory(array $formData)
+    {
+        $this->db->query(
+            "INSERT INTO `expenses_category_assigned_to_users` (user_id, name) VALUES (:userId, :newExpenseCategory)",
+            [
+                'userId' => $_SESSION['user'],
+                'newExpenseCategory' => $formData['newExpenseCategory']
+            ]
+        );
+    }
+
+    public function addNewPaymentMethod(array $formData)
+    {
+        $this->db->query(
+            "INSERT INTO `payment_methods_assigned_to_users` (user_id, name) VALUES (:userId, :newPaymentMethod)",
+            [
+                'userId' => $_SESSION['user'],
+                'newPaymentMethod' => $formData['newPaymentMethod']
+            ]
+        );
+    }
 }

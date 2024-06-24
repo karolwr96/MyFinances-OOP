@@ -45,6 +45,18 @@ class SettingsController
             $this->settingsService->editPaymentMethodName($_POST);
         }
 
+        if (array_key_exists('addNewSourcesOfIncomes', $_POST)) {
+            $this->settingsService->addNewIncomesCategory($_POST);
+        }
+
+        if (array_key_exists('addNewExpenseCategory', $_POST)) {
+            $this->settingsService->addNewExpenseCategory($_POST);
+        }
+
+        if (array_key_exists('addNewPaymentMethod', $_POST)) {
+            $this->settingsService->addNewPaymentMethod($_POST);
+        }
+
         redirectTo('/settings');
     }
 }
