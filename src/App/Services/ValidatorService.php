@@ -71,4 +71,16 @@ class ValidatorService
             'sourceOfIncome' => ['required'],
         ]);
     }
+
+    public function validateSettings(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'editField' => ['required:100'],
+            'editExpense' => ['required'],
+            'newPaymentName' => ['required'],
+            'newSourceOfIncome' => ['required'],
+            'newExpenseCategory' => ['required'],
+            'newPaymentMethod' => ['required']
+        ]);
+    }
 }

@@ -30,9 +30,14 @@ echo '</pre>'; ?>
                                 ?>
                             </select>
                             <div class=" pt-3 pb-3 d-flex">
-                                <input style="width: 65%;" type="text" class="form-control  me-2" name="editField" placeholder="New name">
+                                <input value="<?php echo e($oldFormData['editField'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="editField" placeholder="New name">
                                 <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editSourcesOfIncomes">Apply</button>
                             </div>
+                            <?php if (array_key_exists('editField', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['editField'][0]); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(2)">2. Expense category</h6>

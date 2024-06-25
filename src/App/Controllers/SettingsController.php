@@ -6,14 +6,15 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 use App\Config\Paths;
-use App\Services\{UserService, SettingsService};
+use App\Services\{UserService, SettingsService, ValidatorService};
 
 class SettingsController
 {
     public function __construct(
         private TemplateEngine $view,
         private UserService $userService,
-        private SettingsService $settingsService
+        private SettingsService $settingsService,
+        private ValidatorService $validatorService
     ) {
     }
 
@@ -35,6 +36,8 @@ class SettingsController
 
     public function editField()
     {
+        $this->validatorService->validateSettings($_POST);
+
         if (array_key_exists('editSourcesOfIncomes', $_POST)) {
             $this->settingsService->editIncomesCategoryName($_POST);
         }
