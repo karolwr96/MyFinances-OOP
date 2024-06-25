@@ -121,7 +121,7 @@ echo '</pre>'; ?>
                         <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(8)">8. Delete expense category</h6>
                         <div id="div8" style="display: none;">
                             <div class=" pt-3 pb-3 d-flex">
-                                <select class="form-select" name="category" aria-label="Default select example" value="">
+                                <select class="form-select" name="expenseCategory" aria-label="Default select example" value="">
                                     <?php
                                     foreach ($rows as $row) {
                                     ?>

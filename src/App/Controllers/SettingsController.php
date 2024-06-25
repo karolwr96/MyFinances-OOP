@@ -61,6 +61,14 @@ class SettingsController
             $this->settingsService->deleteSourceOfIncome($_POST);
         }
 
+        if (array_key_exists('deleteExpenseCategory', $_POST)) {
+            $this->settingsService->deleteExpenseCategory($_POST);
+        }
+
+        if (array_key_exists('deletePaymentMethod', $_POST)) {
+            $this->settingsService->deletePaymentMethod($_POST);
+        }
+
         redirectTo('/settings');
     }
 }

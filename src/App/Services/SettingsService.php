@@ -6,6 +6,7 @@ namespace App\Services;
 
 use Framework\Database;
 use Framework\Exceptions\ValidationException;
+use App\Services\TransactionService;
 
 
 class SettingsService
@@ -109,6 +110,56 @@ class SettingsService
             [
                 'userId' => $_SESSION['user'],
                 'incomeCategoryId' => $incomeCategoryId
+            ]
+        );
+    }
+
+    public function deleteExpenseCategory(array $formData)
+    {
+        $expenseCategoryId = $this->db->query(
+            "SELECT id FROM expenses_category_assigned_to_users 
+             WHERE user_id = :userId AND name = :expenseCategory",
+            [
+                'userId' => $_SESSION['user'],
+                'expenseCategory' => $formData['category']
+            ]
+        )->count();
+
+        $this->db->query(
+            "DELETE FROM `expenses_category_assigned_to_users` WHERE user_id = :userId AND name = :expenseCategory",
+            [
+                'userId' => $_SESSION['user'],
+                'expenseCategory' => $formData['expenseCategory'],
+            ]
+        );
+
+        $_SESSION['idCat1'] = $expenseCategoryId;
+
+        $this->db->query(
+            "DELETE FROM `expenses` WHERE user_id = :userId AND expense_category_assigned_to_user_id = :expenseCategoryId",
+            [
+                'userId' => $_SESSION['user'],
+                'expenseCategoryId' => $expenseCategoryId
+            ]
+        );
+    }
+
+    public function deletePaymentMethod(array $formData)
+    {
+        $paymentMethodId = $this->db->query(
+            "SELECT id FROM payment_methods_assigned_to_users 
+             WHERE user_id = :userId AND name = :paymentMethod",
+            [
+                'userId' => $_SESSION['user'],
+                'paymentMethod' => $formData['paymentMethod']
+            ]
+        )->count();
+
+        $this->db->query(
+            "DELETE FROM `payment_methods_assigned_to_users` WHERE user_id = :userId AND name = :paymentMethod",
+            [
+                'userId' => $_SESSION['user'],
+                'paymentMethod' => $formData['paymentMethod'],
             ]
         );
     }
