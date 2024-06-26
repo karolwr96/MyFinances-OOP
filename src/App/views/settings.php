@@ -52,9 +52,14 @@ echo '</pre>'; ?>
                                 ?>
                             </select>
                             <div class=" pt-3 pb-3 d-flex">
-                                <input style="width: 65%;" type="text" class="form-control  me-2" name="editExpense" placeholder="New name">
+                                <input value="<?php echo e($oldFormData['editExpense'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="editExpense" placeholder="New name">
                                 <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editExpenseCategory">Apply</button>
                             </div>
+                            <?php if (array_key_exists('editExpense', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['editExpense'][0]); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(3)">3. Payment method</h6>
@@ -70,9 +75,14 @@ echo '</pre>'; ?>
                                 ?>
                             </select>
                             <div class=" pt-3 pb-3 d-flex">
-                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentName" placeholder="New name">
+                                <input value="<?php echo e($oldFormData['newPaymentName'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentName" placeholder="New name">
                                 <button style="width: 35%; background-color: #ee7724" type="submit" class="btn btn-primary" name="editPaymentMethod">Apply</button>
                             </div>
+                            <?php if (array_key_exists('newPaymentName', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newPaymentName'][0]); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <hr>
@@ -82,25 +92,40 @@ echo '</pre>'; ?>
                         <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(4)">4. New sources of incomes</h6>
                         <div id="div4" style="display: none;">
                             <div class=" pb-3 d-flex">
-                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
+                                <input value="<?php echo e($oldFormData['newSourceOfIncome'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
                                 <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewSourcesOfIncomes">Add</button>
                             </div>
+                            <?php if (array_key_exists('newSourceOfIncome', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newSourceOfIncome'][0]); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(5)">5. New expense category</h6>
                         <div id="div5" style="display: none;">
                             <div class=" pb-3 d-flex">
-                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
+                                <input value="<?php echo e($oldFormData['newExpenseCategory'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
                                 <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewExpenseCategory">Add</button>
                             </div>
+                            <?php if (array_key_exists('newExpenseCategory', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newExpenseCategory'][0]); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;" onclick="toggleDivVisibility(6)">6. New payment method</h6>
                         <div id="div6" style="display: none;">
                             <div class=" pb-3 d-flex">
-                                <input style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
+                                <input value="<?php echo e($oldFormData['newPaymentMethod'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
                                 <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewPaymentMethod">Add</button>
                             </div>
+                            <?php if (array_key_exists('newPaymentMethod', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newPaymentMethod'][0]); ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <hr>

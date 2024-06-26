@@ -36,27 +36,33 @@ class SettingsController
 
     public function editField()
     {
-        $this->validatorService->validateSettings($_POST);
+
 
         if (array_key_exists('editSourcesOfIncomes', $_POST)) {
+            $this->validatorService->validateIncomesCategoryNewName($_POST);
             $this->settingsService->editIncomesCategoryName($_POST);
         }
         if (array_key_exists('editExpenseCategory', $_POST)) {
+            $this->validatorService->validateExpenseCategoryNewName($_POST);
             $this->settingsService->editExpenseCategoryName($_POST);
         }
         if (array_key_exists('editPaymentMethod', $_POST)) {
+            $this->validatorService->validatePaymentMethodNewName($_POST);
             $this->settingsService->editPaymentMethodName($_POST);
         }
 
         if (array_key_exists('addNewSourcesOfIncomes', $_POST)) {
+            $this->validatorService->validateNewIncomesCategory($_POST);
             $this->settingsService->addNewIncomesCategory($_POST);
         }
 
         if (array_key_exists('addNewExpenseCategory', $_POST)) {
+            $this->validatorService->validateNewExpenseCategory($_POST);
             $this->settingsService->addNewExpenseCategory($_POST);
         }
 
         if (array_key_exists('addNewPaymentMethod', $_POST)) {
+            $this->validatorService->validateNewPaymentMethod($_POST);
             $this->settingsService->addNewPaymentMethod($_POST);
         }
 

@@ -72,14 +72,44 @@ class ValidatorService
         ]);
     }
 
-    public function validateSettings(array $formData)
+    public function validateIncomesCategoryNewName(array $formData)
     {
         $this->validator->validate($formData, [
-            'editField' => ['required:100'],
-            'editExpense' => ['required'],
-            'newPaymentName' => ['required'],
-            'newSourceOfIncome' => ['required'],
-            'newExpenseCategory' => ['required'],
+            'editField' => ['required']
+        ]);
+    }
+
+    public function validateExpenseCategoryNewName(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'editExpense' => ['required']
+        ]);
+    }
+
+    public function validatePaymentMethodNewName(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'newPaymentName' => ['required']
+        ]);
+    }
+
+    public function validateNewIncomesCategory(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'newSourceOfIncome' => ['required']
+        ]);
+    }
+
+    public function validateNewExpenseCategory(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'newExpenseCategory' => ['required']
+        ]);
+    }
+
+    public function validateNewPaymentMethod(array $formData)
+    {
+        $this->validator->validate($formData, [
             'newPaymentMethod' => ['required']
         ]);
     }
