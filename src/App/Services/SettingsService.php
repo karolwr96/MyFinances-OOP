@@ -15,6 +15,96 @@ class SettingsService
     {
     }
 
+    public function isIncomesCategoryTakenChangingName(string $editField)
+    {
+        $incomesCategoryCount =  $this->db->query(
+            "SELECT COUNT(*) FROM incomes_category_assigned_to_users WHERE name =:editField AND user_id =:userId ",
+            [
+                'editField' => $editField,
+                'userId' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($incomesCategoryCount > 0) {
+            throw new ValidationException(['editField' => ['Category name already exists']]);
+        }
+    }
+
+    public function isIncomesCategoryTakenNewCategory(string $newField)
+    {
+        $incomesCategoryCount =  $this->db->query(
+            "SELECT COUNT(*) FROM incomes_category_assigned_to_users WHERE name =:newSourceOfIncome AND user_id =:userId ",
+            [
+                'newSourceOfIncome' => $newField,
+                'userId' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($incomesCategoryCount > 0) {
+            throw new ValidationException(['newSourceOfIncome' => ['Category name already exists']]);
+        }
+    }
+
+    public function isExpenseCategoryTakenChangingName(string $editField)
+    {
+        $expensesCategoryCount =  $this->db->query(
+            "SELECT COUNT(*) FROM expenses_category_assigned_to_users WHERE name =:editExpense AND user_id =:userId ",
+            [
+                'editExpense' => $editField,
+                'userId' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($expensesCategoryCount > 0) {
+            throw new ValidationException(['editExpense' => ['Category name already exists']]);
+        }
+    }
+
+    public function isExpenseCategoryTakenNewCategory(string $newField)
+    {
+        $expensesCategoryCount =  $this->db->query(
+            "SELECT COUNT(*) FROM expenses_category_assigned_to_users WHERE name =:newExpenseCategory AND user_id =:userId ",
+            [
+                'newExpenseCategory' => $newField,
+                'userId' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($expensesCategoryCount > 0) {
+            throw new ValidationException(['newExpenseCategory' => ['Category name already exists']]);
+        }
+    }
+
+    public function isPaymentMethodTakenChangingName(string $editField)
+    {
+        $paymentMethodsCount =  $this->db->query(
+            "SELECT COUNT(*) FROM payment_methods_assigned_to_users WHERE name =:newPaymentName AND user_id =:userId ",
+            [
+                'newPaymentName' => $editField,
+                'userId' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($paymentMethodsCount > 0) {
+            throw new ValidationException(['newPaymentName' => ['Category name already exists']]);
+        }
+    }
+
+    public function isPaymentMethodTakenNewCategory(string $editField)
+    {
+        $paymentMethodsCount =  $this->db->query(
+            "SELECT COUNT(*) FROM payment_methods_assigned_to_users WHERE name =:newPaymentMethod AND user_id =:userId ",
+            [
+                'newPaymentMethod' => $editField,
+                'userId' => $_SESSION['user']
+            ]
+        )->count();
+
+        if ($paymentMethodsCount > 0) {
+            throw new ValidationException(['newPaymentMethod' => ['Category name already exists']]);
+        }
+    }
+
     public function editIncomesCategoryName(array $formData)
     {
         $this->db->query(

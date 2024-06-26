@@ -40,29 +40,35 @@ class SettingsController
 
         if (array_key_exists('editSourcesOfIncomes', $_POST)) {
             $this->validatorService->validateIncomesCategoryNewName($_POST);
+            $this->settingsService->isIncomesCategoryTakenChangingName($_POST['editField']);
             $this->settingsService->editIncomesCategoryName($_POST);
         }
         if (array_key_exists('editExpenseCategory', $_POST)) {
             $this->validatorService->validateExpenseCategoryNewName($_POST);
+            $this->settingsService->isExpenseCategoryTakenChangingName($_POST['editExpense']);
             $this->settingsService->editExpenseCategoryName($_POST);
         }
         if (array_key_exists('editPaymentMethod', $_POST)) {
             $this->validatorService->validatePaymentMethodNewName($_POST);
+            $this->settingsService->isPaymentMethodTakenChangingName($_POST['newPaymentName']);
             $this->settingsService->editPaymentMethodName($_POST);
         }
 
         if (array_key_exists('addNewSourcesOfIncomes', $_POST)) {
             $this->validatorService->validateNewIncomesCategory($_POST);
+            $this->settingsService->isIncomesCategoryTakenNewCategory($_POST['newSourceOfIncome']);
             $this->settingsService->addNewIncomesCategory($_POST);
         }
 
         if (array_key_exists('addNewExpenseCategory', $_POST)) {
             $this->validatorService->validateNewExpenseCategory($_POST);
+            $this->settingsService->isExpenseCategoryTakenNewCategory($_POST['newExpenseCategory']);
             $this->settingsService->addNewExpenseCategory($_POST);
         }
 
         if (array_key_exists('addNewPaymentMethod', $_POST)) {
             $this->validatorService->validateNewPaymentMethod($_POST);
+            $this->settingsService->isPaymentMethodTakenNewCategory($_POST['newPaymentMethod']);
             $this->settingsService->addNewPaymentMethod($_POST);
         }
 
