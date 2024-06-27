@@ -156,4 +156,20 @@ class UserService
             $params['httponly']
         );
     }
+
+    public function changeUserPassword(array $formData)
+    {
+        $password = password_hash($formData['newPassword'], PASSWORD_BCRYPT, ['cost' => 12]);
+
+        $this->db->query(
+            "UPDATE users SET password = :newPassword
+            WHERE id = :userId",
+            [
+                'userId' => $_SESSION['user'],
+                'newPassword' => $password
+            ]
+
+        );
+        session_regenerate_id();
+    }
 }
