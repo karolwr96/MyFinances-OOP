@@ -19,20 +19,20 @@
 
                                         <h6 class="px-2">Change password: </h6>
                                         <div class="form-outline mb-2">
-                                            <input type="password" value="" name="newPassword" id="form3Example4" class="form-control" />
+                                            <input type="password" value="" name="new password" id="form3Example4" class="form-control" />
                                             <label class="form-label" for="form3Example4">1. New password</label>
-                                            <?php if (array_key_exists('password', $errors)) : ?>
+                                            <?php if (array_key_exists('new password', $errors)) : ?>
                                                 <div class="error">
-                                                    <?php echo e($errors['password'][0]); ?>
+                                                    <?php echo e($errors['new password'][0]); ?>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
                                         <div class="form-outline mb-2">
                                             <input type="password" value="" name="confirmNewPassword" id="form3Example4" class="form-control" />
                                             <label class="form-label" for="form3Example4">2. Confirm new password</label>
-                                            <?php if (array_key_exists('confirmPassword', $errors)) : ?>
+                                            <?php if (array_key_exists('confirmNewPassword', $errors)) : ?>
                                                 <div class="error">
-                                                    <?php echo e($errors['confirmPassword'][0]); ?>
+                                                    <?php echo e($errors['confirmNewPassword'][0]); ?>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -53,10 +53,17 @@
                                         <h6 class="px-2" style="color: red;">Using this option will permanently delete your account and all data associated with it. I confirm that I have read this information. </h6>
 
                                         <div class="form-check d-flex justify-content-center mb-4">
-                                            <input class="form-check-input me-2" type="checkbox" name="regulations" id="form2Example33" <?php echo $oldFormData['regulations'] ?? false ? 'checked' : '' ?> />
+                                            <input class="form-check-input me-2" type="checkbox" name="regulationsDeleteAccount" id="form2Example33" <?php echo $oldFormData['regulationsDeleteAccount'] ?? false ? 'checked' : '' ?> />
                                             <label class="form-check-label" for="form2Example33">
                                                 I have read the above information
                                             </label>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <?php if (array_key_exists('regulationsDeleteAccount', $errors)) : ?>
+                                                <div class="error">
+                                                    <?php echo e($errors['regulationsDeleteAccount'][0]); ?>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
 
                                         <div class="text-center pb-4">

@@ -113,4 +113,19 @@ class ValidatorService
             'newPaymentMethod' => ['required']
         ]);
     }
+
+    public function validateChangingPassword(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'new password' => ['required'],
+            'confirmNewPassword' => ['required', 'match:new password'],
+        ]);
+    }
+
+    public function validateDeleteAccount(array $formData)
+    {
+        $this->validator->validate($formData, [
+            'regulationsDeleteAccount' => ['required']
+        ]);
+    }
 }
