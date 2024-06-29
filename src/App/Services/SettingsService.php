@@ -115,6 +115,8 @@ class SettingsService
                 'newName' => $formData['editField'],
             ]
         );
+
+        $_SESSION['successfulEditIncomesCategoryName'] = 'Category renamed successfully!';
     }
 
     public function editExpenseCategoryName(array $formData)
@@ -127,6 +129,7 @@ class SettingsService
                 'newName' => $formData['editExpense'],
             ]
         );
+        $_SESSION['successfulEditExpenseCategoryName'] = 'Category renamed successfully!';
     }
 
     public function editPaymentMethodName(array $formData)
@@ -139,6 +142,7 @@ class SettingsService
                 'newName' => $formData['newPaymentName'],
             ]
         );
+        $_SESSION['successfulEditPaymentMethodName'] = 'Category renamed successfully!';
     }
 
     public function addNewIncomesCategory(array $formData)
@@ -150,6 +154,7 @@ class SettingsService
                 'newSourceOfIncome' => $formData['newSourceOfIncome']
             ]
         );
+        $_SESSION['successfulAddedNewIncomesCategory'] = 'New category added successfully!';
     }
 
     public function addNewExpenseCategory(array $formData)
@@ -161,6 +166,7 @@ class SettingsService
                 'newExpenseCategory' => $formData['newExpenseCategory']
             ]
         );
+        $_SESSION['successfulAddedNewExpenseCategory'] = 'New category added successfully!';
     }
 
     public function addNewPaymentMethod(array $formData)
@@ -172,6 +178,7 @@ class SettingsService
                 'newPaymentMethod' => $formData['newPaymentMethod']
             ]
         );
+        $_SESSION['successfulAddedNewPaymentMethod'] = 'New category added successfully!';
     }
 
     public function deleteSourceOfIncome(array $formData)
@@ -202,6 +209,7 @@ class SettingsService
                 'incomeCategoryId' => $incomeCategoryId
             ]
         );
+        $_SESSION['successfulDeletedSourceOfIncome'] = 'Category deleted successfully!';
     }
 
     public function deleteExpenseCategory(array $formData)
@@ -232,6 +240,7 @@ class SettingsService
                 'expenseCategoryId' => $expenseCategoryId
             ]
         );
+        $_SESSION['successfulDeletedExpenseCategory'] = 'Category deleted successfully!';
     }
 
     public function deletePaymentMethod(array $formData)
@@ -252,5 +261,6 @@ class SettingsService
                 'paymentMethod' => $formData['paymentMethod'],
             ]
         );
+        $_SESSION['successfulDeletedPaymentMethod'] = 'Category deleted successfully!';
     }
 }

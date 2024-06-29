@@ -37,6 +37,15 @@
                             <?php endif; ?>
                         </div>
 
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulEditIncomesCategoryName'])) {
+                                echo $_SESSION['successfulEditIncomesCategoryName'];
+                                unset($_SESSION['successfulEditIncomesCategoryName']);
+                            }
+                            ?>
+                        </div>
+
                         <h6 class="px-2 py-2" style=" cursor: pointer;">2. Expense category</h6>
                         <div id="div2">
                             <select class="form-select" name="category" aria-label="Default select example" value="">
@@ -57,6 +66,15 @@
                                     <?php echo e($errors['editExpense'][0]); ?>
                                 </div>
                             <?php endif; ?>
+                        </div>
+
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulEditExpenseCategoryName'])) {
+                                echo $_SESSION['successfulEditExpenseCategoryName'];
+                                unset($_SESSION['successfulEditExpenseCategoryName']);
+                            }
+                            ?>
                         </div>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;">3. Payment method</h6>
@@ -82,6 +100,15 @@
                             <?php endif; ?>
                         </div>
 
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulEditPaymentMethodName'])) {
+                                echo $_SESSION['successfulEditPaymentMethodName'];
+                                unset($_SESSION['successfulEditPaymentMethodName']);
+                            }
+                            ?>
+                        </div>
+
                         <hr>
 
                         <h6 class="px-2">Add another category: </h6>
@@ -99,6 +126,15 @@
                             <?php endif; ?>
                         </div>
 
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['incomes_category_assigned_to_users'])) {
+                                echo $_SESSION['incomes_category_assigned_to_users'];
+                                unset($_SESSION['incomes_category_assigned_to_users']);
+                            }
+                            ?>
+                        </div>
+
                         <h6 class="px-2 py-2" style=" cursor: pointer;">5. New expense category</h6>
                         <div id="div5">
                             <div class=" pb-3 d-flex">
@@ -112,6 +148,15 @@
                             <?php endif; ?>
                         </div>
 
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulAddedNewExpenseCategory'])) {
+                                echo $_SESSION['successfulAddedNewExpenseCategory'];
+                                unset($_SESSION['successfulAddedNewExpenseCategory']);
+                            }
+                            ?>
+                        </div>
+
                         <h6 class="px-2 py-2" style=" cursor: pointer;">6. New payment method</h6>
                         <div id="div6">
                             <div class=" pb-3 d-flex">
@@ -123,6 +168,15 @@
                                     <?php echo e($errors['newPaymentMethod'][0]); ?>
                                 </div>
                             <?php endif; ?>
+                        </div>
+
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulAddedNewPaymentMethod'])) {
+                                echo $_SESSION['successfulAddedNewPaymentMethod'];
+                                unset($_SESSION['successfulAddedNewPaymentMethod']);
+                            }
+                            ?>
                         </div>
 
                         <hr>
@@ -145,6 +199,15 @@
                             </div>
                         </div>
 
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulDeletedSourceOfIncome'])) {
+                                echo $_SESSION['successfulDeletedSourceOfIncome'];
+                                unset($_SESSION['successfulDeletedSourceOfIncome']);
+                            }
+                            ?>
+                        </div>
+
                         <h6 class="px-2 py-2" style=" cursor: pointer;">8. Delete expense category</h6>
                         <div id="div8">
                             <div class=" pt-3 pb-3 d-flex">
@@ -159,6 +222,15 @@
                                 </select>
                                 <button style="width: 35%;" type="submit" class="btn btn-danger" name="deleteExpenseCategory">Delete</button>
                             </div>
+                        </div>
+
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulDeletedExpenseCategory'])) {
+                                echo $_SESSION['successfulDeletedExpenseCategory'];
+                                unset($_SESSION['successfulDeletedExpenseCategory']);
+                            }
+                            ?>
                         </div>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;">9. Delete payment method</h6>
@@ -178,6 +250,14 @@
                             </div>
                         </div>
 
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulDeletedPaymentMethod'])) {
+                                echo $_SESSION['successfulDeletedPaymentMethod'];
+                                unset($_SESSION['successfulDeletedPaymentMethod']);
+                            }
+                            ?>
+                        </div>
 
                         <div class="text-center pb-4">
                             <a href="/" class="btn btn-lg btn-secondary mb-2" style="width: 40%">

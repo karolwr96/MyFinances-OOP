@@ -35,17 +35,6 @@
                                                     <?php echo e($errors['confirmNewPassword'][0]); ?>
                                                 </div>
                                             <?php endif; ?>
-
-                                            <div class="text-center success">
-                                                <?php
-                                                if (isset($_SESSION['successfulChangedPassword'])) {
-                                                    echo $_SESSION['successfulChangedPassword'];
-                                                    unset($_SESSION['successfulChangedPassword']);
-                                                }
-                                                ?>
-                                            </div>
-
-
                                         </div>
 
                                         <div class="text-center pb-4">
