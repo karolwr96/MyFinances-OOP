@@ -117,8 +117,8 @@ class ValidatorService
     public function validateChangingPassword(array $formData)
     {
         $this->validator->validate($formData, [
-            'new password' => ['required'],
-            'confirmNewPassword' => ['required', 'match:new password'],
+            'newpassword' => ['required'],
+            'confirmNewPassword' => ['required', 'match:newpassword'],
         ]);
     }
 

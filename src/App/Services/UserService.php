@@ -139,11 +139,7 @@ class UserService
 
     public function logout()
     {
-        // unset($_SESSION['user']);
-
         session_destroy();
-
-        // session_regenerate_id();
 
         $params = session_get_cookie_params();
         setcookie(
@@ -159,7 +155,7 @@ class UserService
 
     public function changeUserPassword(array $formData)
     {
-        $password = password_hash($formData['newPassword'], PASSWORD_BCRYPT, ['cost' => 12]);
+        $password = password_hash($formData['newpassword'], PASSWORD_BCRYPT, ['cost' => 12]);
 
         $this->db->query(
             "UPDATE users SET password = :newPassword
@@ -170,7 +166,10 @@ class UserService
             ]
 
         );
+
         session_regenerate_id();
+
+        $_SESSION['successfulChangedPassword'] = 'Password changed successfully!';
     }
 
     public function deleteUserAccount()

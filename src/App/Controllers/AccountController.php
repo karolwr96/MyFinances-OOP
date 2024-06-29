@@ -21,8 +21,7 @@ class AccountController
     public function createView()
     {
         echo $this->view->render(
-            "/account.php",
-            []
+            "/account.php"
         );
     }
 

@@ -19,11 +19,11 @@
 
                                         <h6 class="px-2">Change password: </h6>
                                         <div class="form-outline mb-2">
-                                            <input type="password" value="" name="new password" id="form3Example4" class="form-control" />
+                                            <input type="password" value="" name="newpassword" id="form3Example4" class="form-control" />
                                             <label class="form-label" for="form3Example4">1. New password</label>
-                                            <?php if (array_key_exists('new password', $errors)) : ?>
+                                            <?php if (array_key_exists('newpassword', $errors)) : ?>
                                                 <div class="error">
-                                                    <?php echo e($errors['new password'][0]); ?>
+                                                    <?php echo e($errors['newpassword'][0]); ?>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
@@ -35,6 +35,17 @@
                                                     <?php echo e($errors['confirmNewPassword'][0]); ?>
                                                 </div>
                                             <?php endif; ?>
+
+                                            <div class="text-center success">
+                                                <?php
+                                                if (isset($_SESSION['successfulChangedPassword'])) {
+                                                    echo $_SESSION['successfulChangedPassword'];
+                                                    unset($_SESSION['successfulChangedPassword']);
+                                                }
+                                                ?>
+                                            </div>
+
+
                                         </div>
 
                                         <div class="text-center pb-4">
