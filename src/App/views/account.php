@@ -37,6 +37,15 @@
                                             <?php endif; ?>
                                         </div>
 
+                                        <div class="text-center success">
+                                            <?php
+                                            if (isset($_SESSION['successfulChangedPassword'])) {
+                                                echo $_SESSION['successfulChangedPassword'];
+                                                unset($_SESSION['successfulChangedPassword']);
+                                            }
+                                            ?>
+                                        </div>
+
                                         <div class="text-center pb-4">
                                             <button class="btn btn-lg btn-primary mb-2" name="changeUserPassword" style="width: 40%; background-color: #ee7724">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">

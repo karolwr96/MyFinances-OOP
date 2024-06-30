@@ -13,7 +13,7 @@ class ExpenseController
         private TemplateEngine $view,
         private ValidatorService $validatorService,
         private TransactionService $transactionService,
-        private UserService $userService
+        private UserService $userService,
     ) {
     }
 

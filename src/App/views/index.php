@@ -24,12 +24,12 @@
                                 <option value="individualInterval">Own scope</option>
                             </select>
                             <br>
-                            <div id="fields" class="hidden">
+                            <div id="fields">
                                 <h6 class="px-2">From:</h6>
-                                <input type="date" name="fromDate" class="form-control">
+                                <input type="date" id="fromDate" name="fromDate" class="form-control">
                                 <br>
                                 <h6 class="px-2">To:</h6>
-                                <input type="date" name="toDate" class="form-control">
+                                <input type="date" id="toDate" name="toDate" class="form-control">
                             </div>
                         </div>
 
@@ -141,10 +141,69 @@
     </div>
 </section>
 
+
+<script>
+    const selectedOption = localStorage.getItem('selectedOption');
+    if (selectedOption) {
+        document.getElementById('options').value = selectedOption;
+    }
+
+    document.getElementById('options').addEventListener('change', function() {
+        localStorage.setItem('selectedOption', this.value);
+        toggleFields();
+    });
+
+    function toggleFields() {
+        const selectedOption = document.getElementById('options').value;
+        const fieldsContainer = document.getElementById('fields');
+        const fromDateInput = fieldsContainer.querySelector('input[name="fromDate"]');
+        const toDateInput = fieldsContainer.querySelector('input[name="toDate"]');
+
+        if (selectedOption === 'currentMonth') {
+            const currentDate = new Date();
+            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            fromDateInput.value = formatDate(firstDayOfMonth);
+            toDateInput.value = formatDate(lastDayOfMonth);
+
+        } else if (selectedOption === 'previousMonth') {
+            const currentDate = new Date();
+            const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+            const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+            fromDateInput.value = formatDate(firstDayOfMonth);
+            toDateInput.value = formatDate(lastDayOfMonth);
+
+        } else {
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', () => {
+                    localStorage.setItem(input.id, input.value);
+                });
+            });
+
+            window.addEventListener('load', () => {
+                document.querySelectorAll('input').forEach(input => {
+                    const storedValue = localStorage.getItem(input.id);
+                    if (storedValue) {
+                        input.value = storedValue;
+                    }
+                });
+            });
+        }
+    }
+
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    toggleFields();
+</script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="/assets/scripts/toogle.js"> </script>
 
 <script>
     const incomesTable = <?php echo json_encode($arrayWithResult); ?>;
