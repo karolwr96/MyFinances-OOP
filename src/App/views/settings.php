@@ -13,9 +13,79 @@
                     <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-4 border-top-0"></div>
                     <div class="container">
 
-                        <h6 class="px-2">Change category name: </h6>
+                        <h5 class="px-2">Add another category: </h5>
 
-                        <h6 class="px-2 py-2" style=" cursor: pointer;">1. Sources of incomes</h6>
+                        <h6 class="px-2 py-2" style=" cursor: pointer;">1. New sources of incomes</h6>
+                        <div id="div4">
+                            <div class=" pb-3 d-flex">
+                                <input value="<?php echo e($oldFormData['newSourceOfIncome'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
+                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewSourcesOfIncomes">Add</button>
+                            </div>
+                            <?php if (array_key_exists('newSourceOfIncome', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newSourceOfIncome'][0]); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulAddedNewIncomesCategory'])) {
+                                echo $_SESSION['successfulAddedNewIncomesCategory'];
+                                unset($_SESSION['successfulAddedNewIncomesCategory']);
+                            }
+                            ?>
+                        </div>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;">2. New expense category</h6>
+                        <div id="div5">
+                            <div class=" pb-3 d-flex">
+                                <input value="<?php echo e($oldFormData['newExpenseCategory'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
+                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewExpenseCategory">Add</button>
+                            </div>
+                            <?php if (array_key_exists('newExpenseCategory', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newExpenseCategory'][0]); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulAddedNewExpenseCategory'])) {
+                                echo $_SESSION['successfulAddedNewExpenseCategory'];
+                                unset($_SESSION['successfulAddedNewExpenseCategory']);
+                            }
+                            ?>
+                        </div>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;">3. New payment method</h6>
+                        <div id="div6">
+                            <div class=" pb-3 d-flex">
+                                <input value="<?php echo e($oldFormData['newPaymentMethod'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
+                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewPaymentMethod">Add</button>
+                            </div>
+                            <?php if (array_key_exists('newPaymentMethod', $errors)) : ?>
+                                <div class="error">
+                                    <?php echo e($errors['newPaymentMethod'][0]); ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="text-center success">
+                            <?php
+                            if (isset($_SESSION['successfulAddedNewPaymentMethod'])) {
+                                echo $_SESSION['successfulAddedNewPaymentMethod'];
+                                unset($_SESSION['successfulAddedNewPaymentMethod']);
+                            }
+                            ?>
+                        </div>
+
+                        <hr>
+
+                        <h5 class="px-2">Change category name: </h5>
+
+                        <h6 class="px-2 py-2" style=" cursor: pointer;">4. Sources of incomes</h6>
                         <div id="div1">
                             <select class="form-select" name="sourceOfIncome" aria-label="Default select example" value="">
                                 <?php
@@ -46,7 +116,7 @@
                             ?>
                         </div>
 
-                        <h6 class="px-2 py-2" style=" cursor: pointer;">2. Expense category</h6>
+                        <h6 class="px-2 py-2" style=" cursor: pointer;">5. Expense category</h6>
                         <div id="div2">
                             <select class="form-select" name="category" aria-label="Default select example" value="">
                                 <?php
@@ -77,7 +147,7 @@
                             ?>
                         </div>
 
-                        <h6 class="px-2 py-2" style=" cursor: pointer;">3. Payment method</h6>
+                        <h6 class="px-2 py-2" style=" cursor: pointer;">6. Payment method</h6>
                         <div id="div3">
                             <select class="form-select" name="paymentMethod" aria-label="Default select example" value="">
                                 <?php
@@ -111,77 +181,7 @@
 
                         <hr>
 
-                        <h6 class="px-2">Add another category: </h6>
-
-                        <h6 class="px-2 py-2" style=" cursor: pointer;">4. New sources of incomes</h6>
-                        <div id="div4">
-                            <div class=" pb-3 d-flex">
-                                <input value="<?php echo e($oldFormData['newSourceOfIncome'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newSourceOfIncome" placeholder="New sources of incomes">
-                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewSourcesOfIncomes">Add</button>
-                            </div>
-                            <?php if (array_key_exists('newSourceOfIncome', $errors)) : ?>
-                                <div class="error">
-                                    <?php echo e($errors['newSourceOfIncome'][0]); ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-
-                        <div class="text-center success">
-                            <?php
-                            if (isset($_SESSION['incomes_category_assigned_to_users'])) {
-                                echo $_SESSION['incomes_category_assigned_to_users'];
-                                unset($_SESSION['incomes_category_assigned_to_users']);
-                            }
-                            ?>
-                        </div>
-
-                        <h6 class="px-2 py-2" style=" cursor: pointer;">5. New expense category</h6>
-                        <div id="div5">
-                            <div class=" pb-3 d-flex">
-                                <input value="<?php echo e($oldFormData['newExpenseCategory'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newExpenseCategory" placeholder="New sources of incomes">
-                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewExpenseCategory">Add</button>
-                            </div>
-                            <?php if (array_key_exists('newExpenseCategory', $errors)) : ?>
-                                <div class="error">
-                                    <?php echo e($errors['newExpenseCategory'][0]); ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-
-                        <div class="text-center success">
-                            <?php
-                            if (isset($_SESSION['successfulAddedNewExpenseCategory'])) {
-                                echo $_SESSION['successfulAddedNewExpenseCategory'];
-                                unset($_SESSION['successfulAddedNewExpenseCategory']);
-                            }
-                            ?>
-                        </div>
-
-                        <h6 class="px-2 py-2" style=" cursor: pointer;">6. New payment method</h6>
-                        <div id="div6">
-                            <div class=" pb-3 d-flex">
-                                <input value="<?php echo e($oldFormData['newPaymentMethod'] ?? ''); ?>" style="width: 65%;" type="text" class="form-control  me-2" name="newPaymentMethod" placeholder="New sources of incomes">
-                                <button style="width: 35%;" type="submit" class="btn btn-success" name="addNewPaymentMethod">Add</button>
-                            </div>
-                            <?php if (array_key_exists('newPaymentMethod', $errors)) : ?>
-                                <div class="error">
-                                    <?php echo e($errors['newPaymentMethod'][0]); ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-
-                        <div class="text-center success">
-                            <?php
-                            if (isset($_SESSION['successfulAddedNewPaymentMethod'])) {
-                                echo $_SESSION['successfulAddedNewPaymentMethod'];
-                                unset($_SESSION['successfulAddedNewPaymentMethod']);
-                            }
-                            ?>
-                        </div>
-
-                        <hr>
-
-                        <h6 class="px-2">Remove current category: </h6>
+                        <h5 class="px-2">Remove current category: </h5>
 
                         <h6 class="px-2 py-2" style=" cursor: pointer;">7. Delete source of income</h6>
                         <div id="div7">
